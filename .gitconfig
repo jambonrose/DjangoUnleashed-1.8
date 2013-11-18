@@ -1,0 +1,4 @@
+[alias]
+    prev = checkout HEAD^
+	next = !git checkout `git rev-list HEAD..master | tail -1`
+    chapter = "!f() { if [ ${#1} == 1 ]; then git log --oneline --color=always | grep -e \"Ch0$1\" --color=always; else git log --oneline --color=always | grep -e \"Ch$1\" --color=always; fi; }; f"
