@@ -34,6 +34,10 @@ class Startup(models.Model):
     website = models.URLField(max_length=255)
     tags = models.ManyToManyField(Tag)
 
+    class Meta:
+        ordering = ['name']
+        get_latest_by = 'founded_date'
+
     def __str__(self):
         return self.name
 
