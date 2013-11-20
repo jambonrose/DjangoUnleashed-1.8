@@ -13,6 +13,9 @@ class Tag(models.Model):
         unique=True,
         help_text='A label for URL config.')
 
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
 
