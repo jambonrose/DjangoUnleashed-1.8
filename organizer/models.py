@@ -23,3 +23,4 @@ class NewsLink(models.Model):
     title = models.CharField(max_length=63)
     pub_date = models.DateField()
     link = models.URLField()
+    startup = models.ForeignKey(Startup)
