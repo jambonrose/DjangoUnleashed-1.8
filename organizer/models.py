@@ -48,6 +48,11 @@ class NewsLink(models.Model):
     link = models.URLField(max_length=255)
     startup = models.ForeignKey(Startup)
 
+    class Meta:
+        verbose_name = 'news article'
+        ordering = ['-pub_date']
+        get_latest_by = 'pub_date'
+
     def __str__(self):
         return "{}: {}".format(
             self.startup, self.title)
