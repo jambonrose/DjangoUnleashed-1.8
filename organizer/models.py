@@ -31,6 +31,9 @@ class Startup(models.Model):
     website = models.URLField(max_length=255)
     tags = models.ManyToManyField(Tag)
 
+    def __str__(self):
+        return self.name
+
 
 class NewsLink(models.Model):
     title = models.CharField(max_length=63)
