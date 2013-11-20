@@ -40,3 +40,7 @@ class NewsLink(models.Model):
     pub_date = models.DateField('date published')
     link = models.URLField(max_length=255)
     startup = models.ForeignKey(Startup)
+
+    def __str__(self):
+        return "{}: {}".format(
+            self.startup, self.title)
