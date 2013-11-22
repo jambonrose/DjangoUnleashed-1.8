@@ -16,9 +16,6 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from helloworld.views import greeting
-
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', greeting),
 ]
