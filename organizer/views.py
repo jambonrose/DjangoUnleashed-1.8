@@ -4,6 +4,15 @@ from django.shortcuts import (
 from .models import Startup, Tag
 
 
+def startup_detail(request, slug):
+    startup = get_object_or_404(
+        Startup, slug__iexact=slug)
+    return render(
+        request,
+        'organizer/startup_detail.html',
+        {'startup': startup})
+
+
 def startup_list(request):
     return render(
         request,
