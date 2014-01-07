@@ -16,7 +16,7 @@
       </p>
       <ul>
         {% for startup in tag.startup_set.all %}
-          <li><a href="">
+          <li><a href="{{ startup.get_absolute_url }}">
             {{ startup.name }}
           </a></li>
         {% endfor %}
@@ -28,7 +28,7 @@
           <h3>Blog Post{{ tag.blog_posts.count|pluralize }}</h3>
           <ul>
             {% for post in tag.blog_posts.all %}
-              <li><a href="">
+              <li><a href="{{ post.get_absolute_url }}">
                 {{ post.title|title }}
               </a></li>
             {% endfor %}
