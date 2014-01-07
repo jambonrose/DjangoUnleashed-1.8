@@ -9,7 +9,7 @@
   <ul>
     {% for tag in tag_list %}
       <li>
-        <a href="{% url 'organizer_tag_detail' tag.slug %}">
+        <a href="{{ tag.get_absolute_url }}">
           {{ tag.name|title }}</a>
       </li>
     {% empty %}
