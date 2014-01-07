@@ -27,7 +27,7 @@
             <h3>Startup{{ post.startups.count|pluralize }}</h3>
             <ul>
               {% for startup in post.startups.all %}
-                <li><a href="">
+                <li><a href="{{ startup.get_absolute_url }}">
                   {{ startup.name }}
                 </a></li>
               {% endfor %}
@@ -40,7 +40,7 @@
             <h3>Tag{{ post.tags.count|pluralize }}</h3>
             <ul>
               {% for tag in post.tags.all %}
-                <li><a href="">
+                <li><a href="{{ tag.get_absolute_url }}">
                   {{ tag.name|title }}
                 </a></li>
               {% endfor %}
