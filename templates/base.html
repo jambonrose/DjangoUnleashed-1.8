@@ -24,13 +24,13 @@
       <nav>
         <ul>
           <li>
-            <a href="/blog/">
+            <a href="{% url 'blog_post_list' %}">
               Blog</a></li>
           <li>
-            <a href="/startup/">
+            <a href="{% url 'organizer_startup_list' %}">
               Startups</a></li>
           <li>
-            <a href="/tag/">
+            <a href="{% url 'organizer_tag_list' %}">
               Tags</a></li>
         </ul>
       </nav>
