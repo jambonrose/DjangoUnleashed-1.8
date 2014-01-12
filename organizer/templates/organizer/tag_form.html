@@ -13,28 +13,14 @@
     {{ form.name.errors }}
     <p>
       <label for="id_name">Name:</label>
-      {% if form.name.value %}
-        <input id="id_name" maxlength="31"
-            name="name" type="text"
-            value="{{ form.name.value }}" />
-      {% else %}
-        <input id="id_name" maxlength="31"
-            name="name" type="text" />
-      {% endif %}
+      {{ form.name }}
     </p>
     {{ form.slug.errors }}
     <p>
       <label for="id_slug">Slug:</label>
-      {% if form.slug.value %}
-        <input id="id_slug" maxlength="31"
-            name="slug" type="text"
-            value="{{ form.slug.value }}" />
-      {% else %}
-        <input id="id_slug" maxlength="31"
-            name="slug" type="text" />
-      {% endif %}
+      {{ form.slug }}
       <span class="helptext">
-        A label for URL config
+        {{ form.slug.help_text }}
       </span>
     </p>
     <button type="submit">
