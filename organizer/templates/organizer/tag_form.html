@@ -9,18 +9,7 @@
       action="{% url 'organizer_tag_create' %}"
       method="post">
     {% csrf_token %}
-    {{ form.non_field_errors }}
-    {% for field in form %}
-      {{ field.errors}}
-      <p>
-        {{ field.label_tag }}
-        {{ field }}
-        {% if field.help_text %}
-          <span class="helptext">
-            {{ field.help_text }}</span>
-        {% endif %}
-      </p>
-    {% endfor %}
+    {{ form.as_p }}
     <button type="submit">
       Create Tag</button>
   </form>
