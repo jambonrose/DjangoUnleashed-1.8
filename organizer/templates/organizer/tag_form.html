@@ -12,16 +12,12 @@
     {{ form.non_field_errors }}
     {{ form.name.errors }}
     <p>
-      <label for="{{ form.name.id_for_label }}">
-        {{ form.name.label }}:
-      </label>
+      {{ form.name.label_tag }}
       {{ form.name }}
     </p>
     {{ form.slug.errors }}
     <p>
-      <label for="{{ form.slug.id_for_label }}">
-        {{ form.slug.label }}:
-      </label>
+      {{ form.slug.label_tag }}
       {{ form.slug }}
       <span class="helptext">
         {{ form.slug.help_text }}
