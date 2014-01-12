@@ -9,11 +9,32 @@
       action="{% url 'organizer_tag_create' %}"
       method="post">
     {% csrf_token %}
+    {% if form.non_field_errors %}
+      <ul class="custom_error_list">
+        {% for error in form.non_field_errors %}
+          <li><em>{{ error }}</em></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if form.name.errors %}
+      <ul class="custom_error_list">
+        {% for error in form.name.errors %}
+          <li><em>{{ error }}</em></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     <p>
       <label for="id_name">Name:</label>
         <input id="id_name" maxlength="31"
             name="name" type="text" />
     </p>
+    {% if form.slug.errors %}
+      <ul class="custom_error_list">
+        {% for error in form.slug.errors %}
+          <li><em>{{ error }}</em></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     <p>
       <label for="id_slug">Slug:</label>
         <input id="id_slug" maxlength="31"
