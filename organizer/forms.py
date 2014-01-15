@@ -1,7 +1,13 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from .models import Startup, Tag
+from .models import NewsLink, Startup, Tag
+
+
+class NewsLinkForm(forms.ModelForm):
+    class Meta:
+        model = NewsLink
+        fields = '__all__'
 
 
 class StartupForm(forms.ModelForm):
