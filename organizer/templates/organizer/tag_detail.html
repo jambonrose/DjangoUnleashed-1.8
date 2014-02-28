@@ -1,3 +1,10 @@
+{% extends parent_template|default:"organizer/base_organizer.html" %}
+
+{% block title %}
+{{ block.super }} - {{ tag.name|title }}
+{% endblock %}
+
+{% block content %}
   <h2>{{ tag.name|title }}</h2>
   {% if tag.startup_set.all %}
     <section>
@@ -31,3 +38,4 @@
       {% if not tag.startup_set.all and not tag.blog_posts.all %}
         <p>This tag is not related to any content.</p>
       {% endif %}
+{% endblock %}
