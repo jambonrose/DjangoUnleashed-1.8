@@ -2,7 +2,11 @@
     <section>
       <h3>Startups</h3>
       <ul>
-        <!-- list of startups related to tag -->
+        {% for startup in tag.startup_set.all %}
+          <li><a href="">
+            {{ startup.name }}
+          </a></li>
+        {% endfor %}
       </ul>
     </section>
         <section>
