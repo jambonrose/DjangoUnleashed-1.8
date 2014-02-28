@@ -2,6 +2,11 @@
   {% if tag.startup_set.all %}
     <section>
       <h3>Startups</h3>
+      <p>
+        Tag is associated with
+        {{ tag.startup_set.all|length }}
+        startups.
+      </p>
       <ul>
         {% for startup in tag.startup_set.all %}
           <li><a href="">
