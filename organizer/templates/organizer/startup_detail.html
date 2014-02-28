@@ -3,7 +3,7 @@
   <h2>{{ startup.name }}</h2>
   <dl>
     <dt>Date Founded</dt>
-      <dd>{{ startup.founded_date }}</dd>
+      <dd>{{ startup.founded_date|date:"F jS, Y" }}</dd>
     <dt>Website</dt>
       <dd>{{ startup.website }}</dd>
     <dt>Contact</dt>
