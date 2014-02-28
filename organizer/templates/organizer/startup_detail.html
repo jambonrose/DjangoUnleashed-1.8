@@ -18,7 +18,7 @@
 
   </dl>
 
-  <p>{{ startup.description }}</p>
+  {{ startup.description|linebreaks }}
 
       {% if startup.newslink_set.all %}
           <section>
