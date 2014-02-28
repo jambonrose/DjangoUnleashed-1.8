@@ -4,8 +4,8 @@
       <h3>Startups</h3>
       <p>
         Tag is associated with
-        {{ tag.startup_set.all|length }}
-        startup{{ tag.startup_set.all|length|pluralize }}.
+        {{ tag.startup_set.count }}
+        startup{{ tag.startup_set.count|pluralize }}.
       </p>
       <ul>
         {% for startup in tag.startup_set.all %}
