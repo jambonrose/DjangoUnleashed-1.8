@@ -1,4 +1,4 @@
-  <h2>{{ tag.name }}</h2>
+  <h2>{{ tag.name|title }}</h2>
   {% if tag.startup_set.all %}
     <section>
       <h3>Startups</h3>
@@ -17,7 +17,7 @@
           <ul>
             {% for post in tag.blog_posts.all %}
               <li><a href="">
-                {{ post.title }}
+                {{ post.title|title }}
               </a></li>
             {% endfor %}
           </ul>
