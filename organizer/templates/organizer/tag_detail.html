@@ -5,7 +5,7 @@
       <p>
         Tag is associated with
         {{ tag.startup_set.all|length }}
-        startups.
+        startup{{ tag.startup_set.all|length|pluralize }}.
       </p>
       <ul>
         {% for startup in tag.startup_set.all %}
