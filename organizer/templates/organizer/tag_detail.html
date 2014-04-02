@@ -1,4 +1,5 @@
   <h2>{{ tag.name }}</h2>
+  {% if tag.startup_set.all %}
     <section>
       <h3>Startups</h3>
       <ul>
@@ -9,6 +10,7 @@
         {% endfor %}
       </ul>
     </section>
+  {% endif %}
         <section>
           <h3>Blog Posts</h3>
           <ul>
