@@ -1,10 +1,10 @@
 from django.conf.urls import url
 
-from .views import post_detail, post_list
+from .views import PostList, post_detail
 
 urlpatterns = [
     url(r'^$',
-        post_list,
+        PostList.as_view(),
         name='blog_post_list'),
     url(r'^(?P<year>\d{4})/'
         r'(?P<month>\d{1,2})/'

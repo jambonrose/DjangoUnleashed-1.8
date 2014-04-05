@@ -1,5 +1,6 @@
 from django.shortcuts import (
     get_object_or_404, render)
+from django.views.generic import View
 
 from .models import Post
 
@@ -16,8 +17,10 @@ def post_detail(request, year, month, slug):
         {'post': post})
 
 
-def post_list(request):
-    return render(
-        request,
-        'blog/post_list.html',
-        {'post_list': Post.objects.all()})
+class PostList(View):
+
+    def get(self, request):
+        return render(
+            request,
+            'blog/post_list.html',
+            {'post_list': Post.objects.all()})
