@@ -9,6 +9,9 @@ class TagForm(forms.Form):
         max_length=31,
         help_text='A label for URL config')
 
+    def clean_name(self):
+        return self.cleaned_data['name'].lower()
+
     def save(self):
         new_tag = Tag.objects.create(
             name=self.cleaned_data['name'],
