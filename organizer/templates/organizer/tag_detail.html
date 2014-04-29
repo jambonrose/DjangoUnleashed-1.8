@@ -13,6 +13,7 @@
   {% else %}
     <p>This tag is not related to any startups.</p>
   {% endif %}
+      {% if tag.blog_posts.all %}
         <section>
           <h3>Blog Posts</h3>
           <ul>
@@ -23,3 +24,6 @@
             {% endfor %}
           </ul>
         </section>
+      {% else %}
+        <p>This tag is not related to any blog posts.</p>
+      {% endif %}
