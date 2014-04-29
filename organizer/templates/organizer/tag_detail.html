@@ -16,6 +16,10 @@
         <section>
           <h3>Blog Posts</h3>
           <ul>
-            <!-- list of posts related to tag -->
+            {% for post in tag.blog_posts.all %}
+              <li><a href="">
+                {{ post.title }}
+              </a></li>
+            {% endfor %}
           </ul>
         </section>
