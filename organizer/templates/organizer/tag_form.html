@@ -9,20 +9,8 @@
       action="{% url 'organizer_tag_create' %}"
       method="post">
     {% csrf_token %}
-    {% if form.non_field_errors %}
-      <ul class="custom_error_list">
-        {% for error in form.non_field_errors %}
-          <li><em>{{ error }}</em></li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-    {% if form.name.errors %}
-      <ul class="custom_error_list">
-        {% for error in form.name.errors %}
-          <li><em>{{ error }}</em></li>
-        {% endfor %}
-      </ul>
-    {% endif %}
+    {{ form.non_field_errors }}
+    {{ form.name.errors }}
     <p>
       <label for="id_name">Name:</label>
       {% if form.name.value %}
@@ -34,13 +22,7 @@
             name="name" type="text" />
       {% endif %}
     </p>
-    {% if form.slug.errors %}
-      <ul class="custom_error_list">
-        {% for error in form.slug.errors %}
-          <li><em>{{ error }}</em></li>
-        {% endfor %}
-      </ul>
-    {% endif %}
+    {{ form.slug.errors }}
     <p>
       <label for="id_slug">Slug:</label>
       {% if form.slug.value %}
