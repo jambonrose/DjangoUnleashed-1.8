@@ -25,8 +25,14 @@
     {% endif %}
     <p>
       <label for="id_name">Name:</label>
+      {% if form.name.value %}
+        <input id="id_name" maxlength="31"
+            name="name" type="text"
+            value="{{ form.name.value }}" />
+      {% else %}
         <input id="id_name" maxlength="31"
             name="name" type="text" />
+      {% endif %}
     </p>
     {% if form.slug.errors %}
       <ul class="custom_error_list">
@@ -37,8 +43,14 @@
     {% endif %}
     <p>
       <label for="id_slug">Slug:</label>
+      {% if form.slug.value %}
+        <input id="id_slug" maxlength="31"
+            name="slug" type="text"
+            value="{{ form.slug.value }}" />
+      {% else %}
         <input id="id_slug" maxlength="31"
             name="slug" type="text" />
+      {% endif %}
       <span class="helptext">
         A label for URL config
       </span>
