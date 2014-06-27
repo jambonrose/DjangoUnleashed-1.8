@@ -1,4 +1,5 @@
   <h2>Tag List</h2>
+  {% if tag_list %}
   <ul>
     {% for tag in tag_list %}
       <li>
@@ -7,3 +8,6 @@
       </li>
     {% endfor %}
   </ul>
+  {% else %}
+    <p><em>There are currently no Tags available.</em></p>
+  {% endif %}
