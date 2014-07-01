@@ -10,6 +10,18 @@ class NewsLinkForm(forms.ModelForm):
         fields = '__all__'
 
 
+class SlugCleanMixin:
+    """Mixin class for slug cleaning method."""
+
+    def clean_slug(self):
+        new_slug = (
+            self.cleaned_data['slug'].lower())
+        if new_slug == 'create':
+            raise ValidationError(
+                'Slug may not be "create".')
+        return new_slug
+
+
 class StartupForm(forms.ModelForm):
     class Meta:
         model = Startup
