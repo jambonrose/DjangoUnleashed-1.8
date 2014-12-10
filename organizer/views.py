@@ -1,4 +1,5 @@
-from django.core.paginator import Paginator
+from django.core.paginator import (
+    EmptyPage, PageNotAnInteger, Paginator)
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import (
     get_object_or_404, redirect, render)
@@ -104,7 +105,13 @@ class StartupList(View):
             startups, self.paginate_by)
         page_number = request.GET.get(
             self.page_kwarg)
-        page = paginator.page(page_number)
+        try:
+            page = paginator.page(page_number)
+        except PageNotAnInteger:
+            page = paginator.page(1)
+        except EmptyPage:
+            page = paginator.page(
+                paginator.num_pages)
         context = {
             'is_paginated':
                 page.has_other_pages(),
