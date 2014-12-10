@@ -28,4 +28,26 @@
       <li><em>There are currently no Tags available.</em></li>
     {% endfor %}
   </ul>
+
+  {% if is_paginated %}
+    <ul>
+      {% if previous_page_url %}
+        <li>
+          <a href="{{ previous_page_url }}">
+            Previous</a>
+        </li>
+      {% endif %}
+      <li>
+        Page {{ tag_list.number}}
+        of {{ paginator.num_pages }}
+      </li>
+      {% if next_page_url %}
+        <li>
+          <a href="{{ next_page_url }}">
+            Next</a>
+        </li>
+      {% endif %}
+    </ul>
+  {% endif %}
+
 {% endblock %}
