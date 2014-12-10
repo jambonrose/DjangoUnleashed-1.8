@@ -31,9 +31,9 @@
 
   {% if is_paginated %}
     <ul>
-      {% if startup_list.has_previous %}
+      {% if previous_page_url %}
         <li>
-          <a href="?page={{ startup_list.previous_page_number }}">
+          <a href="{{ previous_page_url }}">
             Previous</a>
         </li>
       {% endif %}
@@ -41,9 +41,9 @@
         Page {{ startup_list.number }}
         of {{ paginator.num_pages }}
       </li>
-      {% if startup_list.has_next %}
+      {% if next_page_url %}
         <li>
-          <a href="?page={{ startup_list.next_page_number }}">
+          <a href="{{ next_page_url }}">
             Next</a>
         </li>
       {% endif %}
