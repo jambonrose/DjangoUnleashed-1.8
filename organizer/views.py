@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import (
     get_object_or_404, redirect, render)
@@ -93,11 +94,15 @@ def startup_detail(request, slug):
 
 
 class StartupList(View):
+    paginate_by = 5  # 5 items per page
     template_name = 'organizer/startup_list.html'
 
     def get(self, request):
         startups = Startup.objects.all()
-        context = {'startup_list': startups}
+        paginator = Paginator(
+            startups, self.paginate_by)
+        page = paginator.page(1)
+        context = {'startup_list': page}
         return render(
             request, self.template_name, context)
 
