@@ -94,6 +94,7 @@ def startup_detail(request, slug):
 
 
 class StartupList(View):
+    page_kwarg = 'page'
     paginate_by = 5  # 5 items per page
     template_name = 'organizer/startup_list.html'
 
@@ -101,7 +102,9 @@ class StartupList(View):
         startups = Startup.objects.all()
         paginator = Paginator(
             startups, self.paginate_by)
-        page = paginator.page(1)
+        page_number = request.GET.get(
+            self.page_kwarg)
+        page = paginator.page(page_number)
         context = {
             'is_paginated':
                 page.has_other_pages(),
