@@ -5,7 +5,7 @@ from ..views import (
     tag_detail)
 
 urlpatterns = [
-    url(r'^$',
+    url(r'^((?P<page_number>\d+)/)?$',
         TagList.as_view(),
         name='organizer_tag_list'),
     url(r'^create/$',
