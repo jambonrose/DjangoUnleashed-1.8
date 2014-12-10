@@ -112,10 +112,24 @@ class StartupList(View):
         except EmptyPage:
             page = paginator.page(
                 paginator.num_pages)
+        if page.has_previous():
+            prev_url = "?{pkw}={n}".format(
+                pkw=self.page_kwarg,
+                n=page.previous_page_number())
+        else:
+            prev_url = None
+        if page.has_next():
+            next_url = "?{pkw}={n}".format(
+                pkw=self.page_kwarg,
+                n=page.next_page_number())
+        else:
+            next_url = None
         context = {
             'is_paginated':
                 page.has_other_pages(),
+            'next_page_url': next_url,
             'paginator': paginator,
+            'previous_page_url': prev_url,
             'startup_list': page,
         }
         return render(
