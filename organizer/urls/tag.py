@@ -1,12 +1,12 @@
 from django.conf.urls import url
 
 from ..views import (
-    TagCreate, TagDelete, TagUpdate, tag_detail,
-    tag_list)
+    TagCreate, TagDelete, TagList, TagUpdate,
+    tag_detail)
 
 urlpatterns = [
     url(r'^$',
-        tag_list,
+        TagList.as_view(),
         name='organizer_tag_list'),
     url(r'^create/$',
         TagCreate.as_view(),
