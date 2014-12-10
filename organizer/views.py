@@ -168,7 +168,7 @@ def tag_detail(request, slug):
 class TagList(View):
     template_name = 'organizer/tag_list.html'
 
-    def get(self, request):
+    def get(self, request, page_number=None):
         tags = Tag.objects.all()
         context = {
             'tag_list': tags,
