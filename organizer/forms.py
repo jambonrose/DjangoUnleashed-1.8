@@ -7,7 +7,7 @@ from .models import Tag
 class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
-        fields = '__all__'
+        fields = ['name', 'slug']
 
     def clean_name(self):
         return self.cleaned_data['name'].lower()
