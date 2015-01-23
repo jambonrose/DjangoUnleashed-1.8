@@ -21,7 +21,7 @@ class NewsLinkCreate(View):
         bound_form = self.form_class(request.POST)
         if bound_form.is_valid():
             new_newslink = bound_form.save()
-            return redirect(new_newslink.startup)
+            return redirect(new_newslink)
         else:
             return render(
                 request,
