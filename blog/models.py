@@ -44,6 +44,11 @@ class Post(models.Model):
                     'month': self.pub_date.month,
                     'slug': self.slug})
 
+    def get_archive_year_url(self):
+        return reverse(
+            'blog_post_archive_year',
+            kwargs={'year': self.pub_date.year})
+
     def get_delete_url(self):
         return reverse(
             'blog_post_delete',

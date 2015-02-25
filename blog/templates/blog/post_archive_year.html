@@ -1,0 +1,37 @@
+{% extends parent_template|default:"blog/base_blog.html" %}
+
+{% block title %}
+{{ block.super }} - {{ year|date:"Y" }} Posts
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="desktop four columns">
+    <h3>Archives by Month</h3>
+    <ul>
+      {% for m in date_list %}
+      <li><a href="">
+          {{ m|date:"F Y" }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="twelve columns">
+    <ul class="pagination">
+      {% if previous_year %}
+        <li>
+          <a href="{% url 'blog_post_archive_year' previous_year|date:"Y" %}">
+            ❮ Posts from {{ previous_year|date:"Y" }}</a>
+        </li>
+      {% endif %}
+      {% if next_year %}
+        <li>
+          <a href="{% url 'blog_post_archive_year' next_year|date:"Y" %}">
+            Posts from {{ next_year|date:"Y" }} ❯</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
