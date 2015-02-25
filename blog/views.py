@@ -12,6 +12,7 @@ from .models import Post
 class PostArchiveYear(YearArchiveView):
     model = Post
     date_field = 'pub_date'
+    make_object_list = True
 
 
 class PostCreate(CreateView):

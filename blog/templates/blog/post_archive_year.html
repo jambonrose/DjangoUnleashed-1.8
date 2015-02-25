@@ -6,7 +6,53 @@
 
 {% block content %}
 <div class="row">
+  <div class="eight columns">
+    <div class="mobile">
+        <a
+          href="{% url 'blog_post_create' %}"
+          class="button button-primary">
+        Write New Blog Post</a>
+    </div>
+    <h2>All Posts for {{ year|date:"Y" }}</h2>
+    {% for post in post_list %}
+      <article class="list-item">
+        <header>
+          <h3>
+            <a href="{{ post.get_absolute_url }}">
+              {{ post.title|title }}
+          </a></h3>
+            <ul class="inline">
+                <li>
+                  <a
+                      href="{{ post.get_update_url }}"
+                      class="button">
+                    Edit Post</a></li>
+                <li>
+                  <a
+                      href="{{ post.get_delete_url }}"
+                      class="button">
+                    Delete Post</a></li>
+            </ul>
+          <p>
+            Written on:
+            <time datetime="{{ post.pub_date|date:"Y-m-d" }}">
+              {{ post.pub_date|date:"l, F j, Y" }}
+            </time>
+          </p>
+        </header>
+        <p>{{ post.text|truncatewords:20 }}</p>
+        <p class="read-more">
+          <a href="{{ post.get_absolute_url }}">
+              Read more&hellip;
+        </a><p>
+      </article>
+    {% endfor %}
+  </div>
   <div class="desktop four columns">
+      <a
+        href="{% url 'blog_post_create' %}"
+        class="button button-primary">
+      Write New Blog Post</a>
     <h3>Archives by Month</h3>
     <ul>
       {% for m in date_list %}
