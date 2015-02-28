@@ -1,0 +1,13 @@
+{% extends parent_template|default:"user/base_user.html" %}
+
+{% block title %}
+{{ block.super }} - Login
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="offset-by-two five columns">
+      {% include "user/login_form.html" %}
+    </div>
+  </div>
+{% endblock %}

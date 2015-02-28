@@ -38,5 +38,9 @@ urlpatterns = [
     url(r'^contact/', include(contact_urls)),
     url(r'^startup/', include(startup_urls)),
     url(r'^tag/', include(tag_urls)),
-    url(r'^user/', include(user_urls)),
+    url(r'^user/',
+        include(
+            user_urls,
+            app_name='user',
+            namespace='dj-auth')),
 ]

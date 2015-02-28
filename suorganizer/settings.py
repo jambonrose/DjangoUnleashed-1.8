@@ -160,3 +160,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+# Login Settings
+# https://docs.djangoproject.com/en/1.8/topics/auth/
+from django.core.urlresolvers import reverse_lazy
+
+LOGIN_REDIRECT_URL = reverse_lazy('blog_post_list')

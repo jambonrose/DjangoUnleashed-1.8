@@ -1,0 +1,14 @@
+{% extends parent_template|default:"user/base_user.html" %}
+
+{% block title %}
+{{ block.super }} - Logged Out
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="offset-by-two eight columns">
+      <p>You've successfully logged out.</p>
+      {% include "user/login_form.html" with login_button='Log Back In' %}
+    </div>
+  </div>
+{% endblock %}

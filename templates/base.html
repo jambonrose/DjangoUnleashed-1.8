@@ -26,6 +26,19 @@
   <body>
 
     <div class="container">
+      <div class="status row">
+        <div class="offset-by-eight four columns">
+          <ul class="inline">
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'dj-auth:logout' %}">
+                Log Out</a></li>
+            {% else %}
+              <li><a href="{% url 'dj-auth:login' %}">
+                Log In</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
       <header class="row">
         <div class="offset-by-one ten columns">
           <h1 class="logo">Startup Organizer</h1>
