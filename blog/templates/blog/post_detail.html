@@ -9,6 +9,11 @@
 
     <header>
       <h2>{{ post.title|title }}</h2>
+      <ul>
+        <li>
+          <a href="{{ post.get_update_url }}">
+            Edit Post</a></li>
+      </ul>
       <p>
         Written on
         <time datetime="{{ post.pub_date|date:"Y-m-d" }}">
