@@ -15,6 +15,11 @@
       <li>
         <a href="{{ startup.get_absolute_url }}">
           {{ startup.name }}</a>
+          <ul>
+              <li>
+                <a href="{{ startup.get_update_url }}">
+                  Edit Startup</a></li>
+          </ul>
       </li>
     {% empty %}
       <li><em>No Startups Available</em></li>
