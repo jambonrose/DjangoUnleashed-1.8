@@ -1,14 +1,17 @@
 from django.conf.urls import url
 
 from .views import (
-    NewsLinkCreate, StartupCreate, TagCreate,
-    startup_detail, startup_list, tag_detail,
-    tag_list)
+    NewsLinkCreate, NewsLinkUpdate, StartupCreate,
+    TagCreate, startup_detail, startup_list,
+    tag_detail, tag_list)
 
 urlpatterns = [
     url(r'^newslink/create/$',
         NewsLinkCreate.as_view(),
         name='organizer_newslink_create'),
+    url(r'^newslink/update/(?P<pk>\d+)/$',
+        NewsLinkUpdate.as_view(),
+        name='organizer_newslink_update'),
     url(r'^startup/$',
         startup_list,
         name='organizer_startup_list'),
