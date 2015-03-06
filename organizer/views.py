@@ -70,6 +70,13 @@ def startup_list(request):
         {'startup_list': Startup.objects.all()})
 
 
+class StartupUpdate(ObjectUpdateMixin, View):
+    form_class = StartupForm
+    model = Startup
+    template_name = (
+        'organizer/startup_form_update.html')
+
+
 class TagCreate(ObjectCreateMixin, View):
     form_class = TagForm
     template_name = 'organizer/tag_form.html'
