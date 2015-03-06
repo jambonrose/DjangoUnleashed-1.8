@@ -1,0 +1,20 @@
+{% extends parent_template|default:"organizer/base_organizer.html" %}
+
+{% block title %}
+{{ block.super }} - Update Startup
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div>
+      <form
+          action="{{ startup.get_update_url }}"
+          method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+          Update Startup</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
