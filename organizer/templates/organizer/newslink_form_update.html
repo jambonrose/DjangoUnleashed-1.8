@@ -1,0 +1,20 @@
+{% extends parent_template|default:"organizer/base_organizer.html" %}
+
+{% block title %}
+{{ block.super }} - Update News Article
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div>
+      <form
+          action="{{ newslink.get_update_url }}"
+          method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+          Update Article Link</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
