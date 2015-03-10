@@ -1,0 +1,25 @@
+{% extends parent_template|default:"organizer/base_organizer.html" %}
+
+{% block title %}
+{{ block.super }} - Delete News Article
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div>
+      <form
+          action="{{ newslink.get_delete_url }}"
+          method="post">
+        {% csrf_token %}
+        <p>
+          Are you sure you want to delete link to
+          article {{ newslink.name }}?
+        </p>
+        <a href="{{ newslink.get_absolute_url }}">
+          Cancel</a>
+        <button type="submit">
+          Delete Article Link</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
