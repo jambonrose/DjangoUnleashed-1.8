@@ -58,6 +58,10 @@ class Startup(models.Model):
         return reverse('organizer_startup_detail',
                        kwargs={'slug': self.slug})
 
+    def get_delete_url(self):
+        return reverse('organizer_startup_delete',
+                       kwargs={'slug': self.slug})
+
     def get_update_url(self):
         return reverse('organizer_startup_update',
                        kwargs={'slug': self.slug})
