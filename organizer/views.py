@@ -14,6 +14,25 @@ class NewsLinkCreate(ObjectCreateMixin, View):
     template_name = 'organizer/newslink_form.html'
 
 
+class NewsLinkDelete(View):
+
+    def get(self, request, pk):
+        newslink = get_object_or_404(
+            NewsLink, pk=pk)
+        return render(
+            request,
+            'organizer/'
+            'newslink_confirm_delete.html',
+            {'newslink': newslink})
+
+    def post(self, request, pk):
+        newslink = get_object_or_404(
+            NewsLink, pk=pk)
+        startup = newslink.startup
+        newslink.delete()
+        return redirect(startup)
+
+
 class NewsLinkUpdate(View):
     form_class = NewsLinkForm
     template_name = (
