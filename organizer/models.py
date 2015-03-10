@@ -24,6 +24,10 @@ class Tag(models.Model):
         return reverse('organizer_tag_detail',
                        kwargs={'slug': self.slug})
 
+    def get_delete_url(self):
+        return reverse('organizer_tag_delete',
+                       kwargs={'slug': self.slug})
+
     def get_update_url(self):
         return reverse('organizer_tag_update',
                        kwargs={'slug': self.slug})
