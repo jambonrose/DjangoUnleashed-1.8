@@ -78,7 +78,7 @@ class NewsLink(models.Model):
         verbose_name = 'news article'
         ordering = ['-pub_date']
         get_latest_by = 'pub_date'
-        unique_together = (('slug', 'startup'),)
+        unique_together = ('slug', 'startup')
 
     def __str__(self):
         return "{}: {}".format(
