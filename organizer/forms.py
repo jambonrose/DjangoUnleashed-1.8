@@ -20,7 +20,18 @@ class NewsLinkForm(
         SlugCleanMixin, forms.ModelForm):
     class Meta:
         model = NewsLink
-        fields = '__all__'
+        exclude = ('startup',)
+
+    def save(self, **kwargs):
+        startup_obj = kwargs.get('startup_obj', None)
+        if startup_obj is not None:
+            instance = super().save(commit=False)
+            instance.startup = startup_obj
+            instance.save()
+            self.save_m2m()
+        else:
+            instance = super().save()
+        return instance
 
 
 class StartupForm(
