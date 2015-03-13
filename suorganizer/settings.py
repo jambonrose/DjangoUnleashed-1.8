@@ -85,6 +85,10 @@ DATABASES = {
     }
 }
 
+# Email
+# https://docs.djangoproject.com/en/1.8/topics/email/
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
