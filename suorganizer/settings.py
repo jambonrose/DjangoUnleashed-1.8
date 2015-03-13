@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'organizer',
     'blog',
+    'contact',
 )
 
 MIDDLEWARE_CLASSES = (
