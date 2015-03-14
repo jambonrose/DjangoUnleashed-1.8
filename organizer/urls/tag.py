@@ -1,4 +1,6 @@
 from django.conf.urls import url
+from django.contrib.auth.decorators import \
+    login_required
 
 from ..views import (
     TagCreate, TagDelete, TagDetail, TagList,
@@ -9,7 +11,8 @@ urlpatterns = [
         TagList.as_view(),
         name='organizer_tag_list'),
     url(r'^create/$',
-        TagCreate.as_view(),
+        login_required(
+            TagCreate.as_view()),
         name='organizer_tag_create'),
     url(r'^(?P<slug>[\w\-]+)/$',
         TagDetail.as_view(),
