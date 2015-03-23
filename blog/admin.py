@@ -20,4 +20,6 @@ class PostAdmin(admin.ModelAdmin):
             'fields': (
                 'tags', 'startups')}),
     )
+    filter_horizontal = ('startups',)
+    filter_vertical = ('tags',)
     prepopulated_fields = {"slug": ("title",)}
