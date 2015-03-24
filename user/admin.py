@@ -23,7 +23,11 @@ from django.views.decorators.debug import \
 
 from .forms import (
     UserChangeForm, UserCreationForm)
-from .models import User
+from .models import Profile, User
+
+
+class ProfileAdminInline(admin.StackedInline):
+    model = Profile
 
 
 @admin.register(User)
@@ -99,6 +103,14 @@ class UserAdmin(admin.ModelAdmin):
             kwargs['form'] = self.add_form
         return super().get_form(
             request, obj, **kwargs)
+
+    def get_inline_instances(
+            self, request, obj=None):
+        if obj is None:
+            return tuple()
+        inline_instance = ProfileAdminInline(
+            self.model, self.admin_site)
+        return (inline_instance,)
 
     def get_urls(self):
         password_change = [
