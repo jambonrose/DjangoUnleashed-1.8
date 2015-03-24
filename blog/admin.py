@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib import admin
 from django.db.models import Count
 
@@ -27,6 +29,10 @@ class PostAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
+        if not request.user.has_perms(
+                'view_future_post'):
+            queryset = queryset.filter(
+                pub_date__lte=datetime.now())
         return queryset.annotate(
             tag_number=Count('tags'))
 
