@@ -120,3 +120,14 @@ class Post(models.Model):
         'organizer.tag',
         'user.user',
     ]
+
+    def formatted_title(self):
+        return self.title.title()
+
+    def short_text(self):
+        if len(self.text) > 20:
+            short = ' '.join(self.text.split()[:20])
+            short += ' ...'
+        else:
+            short = self.text
+        return short

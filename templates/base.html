@@ -20,6 +20,12 @@
       href="{% static 'site/skeleton.css' %}">
     <link rel="stylesheet" type="text/css"
       href="{% static 'site/style.css' %}">
+    <link rel="alternate" title="Blog News RSS"
+      type="application/rss+xml"
+      href="{% url 'blog_rss_feed' %}">
+    <link rel="alternate" title="Blog News Atom"
+      type="application/atom+xml"
+      href="{% url 'blog_atom_feed' %}">
     {% block head %}{% endblock %}
   </head>
 
@@ -99,6 +105,20 @@
         <a href="https://Django-Unleashed.com/">
           Django Unleashed</a>
       </p>
+      <ul>
+        <li>
+          <a
+              href="{% url 'blog_rss_feed' %}"
+              class="feed">
+            Blog RSS Feed</a>
+        </li>
+        <li>
+          <a
+              href="{% url 'blog_atom_feed' %}"
+              class="feed">
+            Blog Atom Feed</a>
+        </li>
+      </ul>
     </footer>
 
   </body>
