@@ -7,7 +7,8 @@ from .models import Post
 class PostAdmin(admin.ModelAdmin):
     # list view
     date_hierarchy = 'pub_date'
-    list_display = ('title', 'pub_date')
+    list_display = (
+        'title', 'pub_date', 'tag_count')
     list_filter = ('pub_date',)
     search_fields = ('title', 'text')
     # form view

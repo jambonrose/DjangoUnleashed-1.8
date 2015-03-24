@@ -76,3 +76,7 @@ class Post(models.Model):
             kwargs={'year': self.pub_date.year,
                     'month': self.pub_date.month,
                     'slug': self.slug})
+
+    @property
+    def tag_count(self):
+        return self.tags.count()
