@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.sitemaps.views import (
+    index as site_index_view,
+    sitemap as sitemap_view)
 from django.views.generic import (
     RedirectView, TemplateView)
 
@@ -24,6 +27,8 @@ from contact import urls as contact_urls
 from organizer.urls import (
     startup as startup_urls, tag as tag_urls)
 from user import urls as user_urls
+
+from .sitemaps import sitemaps as sitemaps_dict
 
 admin.site.site_header = 'Startup Organizer Admin'
 admin.site.site_title = 'Startup Organizer Site Admin'
@@ -49,6 +54,14 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^blog/', include(blog_urls)),
     url(r'^contact/', include(contact_urls)),
+    url(r'^sitemap\.xml$',
+        site_index_view,
+        {'sitemaps': sitemaps_dict},
+        name='sitemap'),
+    url(r'^sitemap-(?P<section>.+)\.xml$',
+        sitemap_view,
+        {'sitemaps': sitemaps_dict},
+        name='sitemap-sections'),
     url(r'^sitenews/', include(sitenews)),
     url(r'^startup/', include(startup_urls)),
     url(r'^tag/', include(tag_urls)),
