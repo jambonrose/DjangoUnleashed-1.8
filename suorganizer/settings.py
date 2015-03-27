@@ -86,6 +86,19 @@ TEMPLATES = [{
 WSGI_APPLICATION = 'suorganizer.wsgi.application'
 
 
+# Caches
+# https://docs.djangoproject.com/en/1.8/topics/cache/#local-memory-caching
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+        'TIMEOUT': 600,  # seconds == 10 minutes
+    }
+}
+CACHE_MIDDLEWARE_ALIAS = 'default'
+
+
 # User
 # https://docs.djangoproject.com/en/1.8/topics/auth/customizing/#substituting-a-custom-user-model
 
