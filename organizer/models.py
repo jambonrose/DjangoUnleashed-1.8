@@ -100,8 +100,8 @@ class Startup(models.Model):
 
     @cached_property
     def published_posts(self):
-        return self.blog_posts.filter(
-            pub_date__lt=date.today())
+        return tuple(self.blog_posts.filter(
+            pub_date__lt=date.today()))
 
     def natural_key(self):
         return (self.slug,)
