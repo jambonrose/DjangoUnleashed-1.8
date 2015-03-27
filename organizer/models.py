@@ -2,6 +2,8 @@ from datetime import date
 
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.functional import \
+    cached_property
 
 
 # Model Field Reference
@@ -96,6 +98,7 @@ class Startup(models.Model):
         return reverse('organizer_startup_update',
                        kwargs={'slug': self.slug})
 
+    @cached_property
     def published_posts(self):
         return self.blog_posts.filter(
             pub_date__lt=date.today())
