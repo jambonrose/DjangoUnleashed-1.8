@@ -1,4 +1,5 @@
 {% extends parent_template|default:"organizer/base_organizer.html" %}
+{% load obfuscate_email %}
 
 {% block title %}
 {{ block.super }} - {{ startup.name }}
@@ -33,7 +34,7 @@
     <dt>Website</dt>
       <dd>{{ startup.website|urlize }}</dd>
     <dt>Contact</dt>
-      <dd>{{ startup.contact }}</dd>
+      <dd>{{ startup.contact|obfuscate }}</dd>
 
     {% with tag_list=startup.tags.all %}
       <dt>Tag{{ tag_list|pluralize }}</dt>
