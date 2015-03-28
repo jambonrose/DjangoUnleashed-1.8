@@ -1,4 +1,5 @@
 {% extends parent_template|default:"organizer/base_organizer.html" %}
+{% load partial_post_list %}
 
 {% block title %}
 {{ block.super }} - {{ tag.name|title }}
@@ -41,41 +42,15 @@
       </ul>
     </section>
   {% endif %}
-  {% if perms.blog.view_future_post %}
-    {% with tag_list=tag.blog_posts.all %}
-      {% if tag_list %}
-        <section>
-          <h3>Blog Post{{ tag_list|pluralize }}</h3>
-          <ul>
-            {% for post in tag_list %}
-              <li><a href="{{ post.get_absolute_url }}">
-                {{ post.title|title }}
-              </a></li>
-            {% endfor %}
-          </ul>
-        </section>
-      {% endif %}
-      {% if not tag.startup_set.all and not tag_list %}
+
+  {% format_post_list tag %}
+
+  {% if not perms.blog.view_future_post or not tag.blog_posts.all %}
+    {% if not tag.published_posts|length > 0 %}
+      {% if not tag.startup_set.all %}
         <p>This tag is not related to any content.</p>
       {% endif %}
-    {% endwith %}
-  {% else %}
-    {% with tag_list=tag.published_posts %}
-      {% if tag_list %}
-        <section>
-          <h3>Blog Post{{ tag_list|pluralize }}</h3>
-          <ul>
-            {% for post in tag_list %}
-              <li><a href="{{ post.get_absolute_url }}">
-                {{ post.title|title }}
-              </a></li>
-            {% endfor %}
-          </ul>
-        </section>
-      {% endif %}
-      {% if not tag.startup_set.all and not tag_list %}
-        <p>This tag is not related to any content.</p>
-      {% endif %}
-    {% endwith %}
+    {% endif %}
   {% endif %}
+
 {% endblock %}

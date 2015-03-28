@@ -109,23 +109,7 @@
           </section>
       {% endif %}
 
-      {% if perms.blog.view_future_post and startup.blog_posts.all or startup.published_posts|length > 0 %}
-        {% if startup.newslink_set.all or perms.organizer.add_newslink %}
-          <section class="meta one-third column">
-        {% else %}
-          <section class="meta offset-by-two two-thirds column">
-        {% endif %}
-        {% if perms.blog.view_future_post and startup.blog_posts.all %}
-          {% with post_list=startup.blog_posts.all %}
-            <h3>Blog Post{{ post_list|pluralize }}</h3>
-            {% format_post_list post_list %}
-          {% endwith %}
-        {% elif startup.published_posts|length > 0 %}
-            <h3>Blog Post{{ startup.published_posts|pluralize }}</h3>
-            {% format_post_list startup.published_posts %}
-        {% endif %}
-          </section>
-      {% endif %}
+      {% format_post_list startup %}
 
     </div> <!-- row -->
   {% endif %}
