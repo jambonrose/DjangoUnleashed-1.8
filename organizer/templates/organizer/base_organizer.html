@@ -1,4 +1,5 @@
 {% extends parent_template|default:"base.html" %}
+{% load blog_latest %}
 
 {% block content %}
   <div class="row">
@@ -9,6 +10,12 @@
     </section>
     <section class="desktop four columns">
       {% block create_button %}{% endblock %}
+      {% get_latest_post %}
+      <section class="latest_post">
+        <h4>Latest Post</h4>
+        <p><a href="{{ latest_post.get_absolute_url }}">
+          {{ latest_post.title }}</a></p>
+      </section>
     </section>
   </div>
   {% if is_paginated %}
