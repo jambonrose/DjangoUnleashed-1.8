@@ -10,11 +10,11 @@
     </section>
     <section class="desktop four columns">
       {% block create_button %}{% endblock %}
-      {% get_latest_posts 5 %}
+      {% get_latest_posts 5 as custom_post_list %}
       <section class="latest_posts">
         <h4>Latest Posts</h4>
         <ul>
-          {% for latest_post in latest_posts_list %}
+          {% for latest_post in custom_post_list %}
             <li><a href="{{ latest_post.get_absolute_url }}">
               {{ latest_post.title }}</a></li>
           {% endfor %}
