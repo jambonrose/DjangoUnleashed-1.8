@@ -18,15 +18,6 @@ class PostQueryset(models.QuerySet):
             pub_date__lte=date.today())
 
 
-class PostManager(models.Manager):
-
-    def published(self):
-        return self.get_queryset().published()
-
-
-ConnectedPostManager = PostManager.from_queryset(PostQueryset)
-
-
 class Post(models.Model):
     title = models.CharField(max_length=63)
     slug = models.SlugField(
@@ -49,7 +40,7 @@ class Post(models.Model):
         blank=True,
         related_name='blog_posts')
 
-    objects = ConnectedPostManager()
+    objects = PostQueryset.as_manager()
 
     class Meta:
         verbose_name = 'blog post'
