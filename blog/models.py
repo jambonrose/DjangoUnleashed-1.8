@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -7,6 +9,13 @@ from organizer.models import Startup, Tag
 
 # Model Field Reference
 # https://docs.djangoproject.com/en/1.8/ref/models/fields/
+
+
+class PostManager(models.Manager):
+
+    def published(self):
+        return self.get_queryset().filter(
+            pub_date__lte=date.today())
 
 
 class Post(models.Model):
@@ -30,6 +39,8 @@ class Post(models.Model):
         Startup,
         blank=True,
         related_name='blog_posts')
+
+    objects = PostManager()
 
     class Meta:
         verbose_name = 'blog post'
