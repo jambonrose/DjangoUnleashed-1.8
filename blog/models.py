@@ -20,12 +20,11 @@ class PostQueryset(models.QuerySet):
 
 class PostManager(models.Manager):
 
-    def get_queryset(self):
-        return PostQueryset(
-            self.model, using=self._db)
-
     def published(self):
         return self.get_queryset().published()
+
+
+ConnectedPostManager = PostManager.from_queryset(PostQueryset)
 
 
 class Post(models.Model):
@@ -50,7 +49,7 @@ class Post(models.Model):
         blank=True,
         related_name='blog_posts')
 
-    objects = PostManager()
+    objects = ConnectedPostManager()
 
     class Meta:
         verbose_name = 'blog post'
