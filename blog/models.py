@@ -11,11 +11,21 @@ from organizer.models import Startup, Tag
 # https://docs.djangoproject.com/en/1.8/ref/models/fields/
 
 
-class PostManager(models.Manager):
+class PostQueryset(models.QuerySet):
 
     def published(self):
-        return self.get_queryset().filter(
+        return self.filter(
             pub_date__lte=date.today())
+
+
+class PostManager(models.Manager):
+
+    def get_queryset(self):
+        return PostQueryset(
+            self.model, using=self._db)
+
+    def published(self):
+        return self.get_queryset().published()
 
 
 class Post(models.Model):
