@@ -15,12 +15,17 @@ class Tag(models.Model):
 
 
 class Startup(models.Model):
-    name = models.CharField(max_length=31)
-    slug = models.SlugField()
+    name = models.CharField(
+        max_length=31, db_index=True)
+    slug = models.SlugField(
+        max_length=31,
+        unique=True,
+        help_text='A label for URL config.')
     description = models.TextField()
-    founded_date = models.DateField()
+    founded_date = models.DateField(
+        'date founded')
     contact = models.EmailField()
-    website = models.URLField()
+    website = models.URLField(max_length=255)
     tags = models.ManyToManyField(Tag)
 
 
