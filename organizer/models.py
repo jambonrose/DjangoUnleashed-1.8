@@ -20,4 +20,6 @@ class Startup(models.Model):
 
 
 class NewsLink(models.Model):
-    pass
+    title = models.CharField(max_length=63)
+    pub_date = models.DateField()
+    link = models.URLField()
