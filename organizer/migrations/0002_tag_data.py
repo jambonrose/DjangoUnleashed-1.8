@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from functools import reduce
+from operator import or_
+
 from django.db import migrations, models
+from django.db.models import Q
 
 TAGS = (
     # ( tag name, tag slug ),
@@ -35,8 +39,12 @@ def add_tag_data(apps, schema_editor):
 
 def remove_tag_data(apps, schema_editor):
     Tag = apps.get_model('organizer', 'Tag')
+    query_list = []
     for _, tag_slug in TAGS:
-        Tag.objects.filter(slug=tag_slug).delete()
+        query_list.append(
+            Q(slug=tag_slug))
+    query = reduce(or_, query_list)
+    Tag.objects.filter(query).delete()
 
 
 class Migration(migrations.Migration):
