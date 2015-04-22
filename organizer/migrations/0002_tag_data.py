@@ -33,7 +33,8 @@ def add_tag_data(apps, schema_editor):
 
 
 def remove_tag_data(apps, schema_editor):
-    pass
+    Tag = apps.get_model('organizer', 'Tag')
+    Tag.objects.all().delete()
 
 
 class Migration(migrations.Migration):
