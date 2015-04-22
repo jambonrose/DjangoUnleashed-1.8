@@ -36,8 +36,7 @@ def add_tag_data(apps, schema_editor):
 def remove_tag_data(apps, schema_editor):
     Tag = apps.get_model('organizer', 'Tag')
     for _, tag_slug in TAGS:
-        tag = Tag.objects.get(slug=tag_slug)
-        tag.delete()
+        Tag.objects.filter(slug=tag_slug).delete()
 
 
 class Migration(migrations.Migration):
