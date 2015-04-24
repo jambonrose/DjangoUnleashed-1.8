@@ -1,0 +1,106 @@
+[
+{
+  "pk": 1,
+  "model": "blog.post",
+  "fields": {
+    "text": "THE Web Framework.",
+    "pub_date": "2008-09-03",
+    "slug": "django-10-released",
+    "tags": [
+      3,
+      11,
+      15
+    ],
+    "startups": [],
+    "author": 1,
+    "title": "Django 1.0 Release"
+  }
+},
+{
+  "pk": 2,
+  "model": "blog.post",
+  "fields": {
+    "text": "If only they would make spider bots.",
+    "pub_date": "2011-02-21",
+    "slug": "simple-robots-for-sale",
+    "tags": [
+      1,
+      11
+    ],
+    "startups": [
+      7
+    ],
+    "author": 1,
+    "title": "Simple Robots for Sale"
+  }
+},
+{
+  "pk": 3,
+  "model": "blog.post",
+  "fields": {
+    "text": "Want to learn Django in a class setting? JamBon Software offers hands-on courses in the web framework. Just looking for help? They'll consult on your web and mobile products and can also be hired for end-to-end development.",
+    "pub_date": "2013-01-18",
+    "slug": "django-training",
+    "tags": [
+      3
+    ],
+    "startups": [
+      4
+    ],
+    "author": 1,
+    "title": "Django Training"
+  }
+},
+{
+  "pk": 4,
+  "model": "blog.post",
+  "fields": {
+    "text": "Django 1.8 is Django's newest version, and the next version slated for Long-Term Support (LTS). LTS means that Django 1.8 will be supported for longer than regular versions: Django core developers will specify a single release as LTS, and then continue to update that version regardless of the usual release cycle. This will last until they pick a new LTS version, which typically happens every 3 to 4 years. The last LTS version was 1.4, released in March 2012, which will stop being supported in October 2015.\n\nFor more information: \nhttp://andrewsforge.com/article/upgrading-django-to-17/part-1-introduction-and-django-releases/",
+    "pub_date": "2015-04-01",
+    "slug": "django-18-released",
+    "tags": [
+      3,
+      11,
+      15
+    ],
+    "startups": [],
+    "author": 1,
+    "title": "Django 1.8 Release"
+  }
+},
+{
+  "pk": 5,
+  "model": "blog.post",
+  "fields": {
+    "text": "Remember that the official websites for Django and this book contain a number of extra resources.\n\nhttps://djangoproject.com\nhttps://django-unleashed.com\n\nWant more Django info? There's always my personal blog!\n\nhttps://AndrewsForge.com",
+    "pub_date": "2015-04-08",
+    "slug": "more-django-info",
+    "tags": [
+      3,
+      15
+    ],
+    "startups": [
+      4
+    ],
+    "author": 1,
+    "title": "More Django Info"
+  }
+},
+{
+  "pk": 6,
+  "model": "blog.post",
+  "fields": {
+    "text": "Better integration with HTML Boilerstrap 9.",
+    "pub_date": "2020-05-15",
+    "slug": "new-django-version",
+    "tags": [
+      3,
+      11,
+      15
+    ],
+    "startups": [],
+    "author": 1,
+    "title": "New Django Version"
+  }
+}
+]
