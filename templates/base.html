@@ -17,18 +17,21 @@
       src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
     </script><![endif]-->
     <link rel="stylesheet" type="text/css"
+      href="{% static 'site/normalize.css' %}">
+    <link rel="stylesheet" type="text/css"
+      href="{% static 'site/skeleton.css' %}">
+    <link rel="stylesheet" type="text/css"
       href="{% static 'site/style.css' %}">
     {% block head %}{% endblock %}
   </head>
 
   <body>
 
-    <div><!-- container -->
-      <header>
-          <img
-            src="{% static "site/logo.png" %}"
-            alt="Site Logo">
-          <h1>Startup Organizer</h1>
+    <div class="container">
+      <header class="row">
+        <div class="offset-by-one ten columns">
+          <h1 class="logo">Startup Organizer</h1>
+        </div>
       </header>
       <nav>
         <ul>
@@ -52,9 +55,9 @@
         </ul>
       </nav>
       {% if messages %}
-        <div>
-          <div>
-            <ul>
+        <div class="row">
+          <div class="twelve columns">
+            <ul class="messages">
               {% for message in messages %}
                 {% if message.tags %}
                   <li class="{{ message.tags }}">
