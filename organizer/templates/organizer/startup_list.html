@@ -29,7 +29,7 @@
     {% endfor %}
   </ul>
 
-  {% if startup_list.has_other_pages %}
+  {% if is_paginated %}
     <ul>
       {% if startup_list.has_previous %}
         <li>
