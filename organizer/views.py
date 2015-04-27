@@ -102,7 +102,10 @@ class StartupList(View):
         paginator = Paginator(
             startups, self.paginate_by)
         page = paginator.page(1)
-        context = {'startup_list': page}
+        context = {
+            'paginator': paginator,
+            'startup_list': page,
+        }
         return render(
             request, self.template_name, context)
 
