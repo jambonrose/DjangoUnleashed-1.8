@@ -5,13 +5,12 @@ from django.core.urlresolvers import (
 from django.shortcuts import (
     get_object_or_404, redirect, render)
 from django.views.generic import (
-    CreateView, DetailView, View)
+    CreateView, DeleteView,
+    DetailView, UpdateView, View)
 
 from .forms import (
     NewsLinkForm, StartupForm, TagForm)
 from .models import NewsLink, Startup, Tag
-from .utils import (
-    ObjectDeleteMixin, ObjectUpdateMixin)
 
 
 class NewsLinkCreate(CreateView):
@@ -78,7 +77,7 @@ class StartupCreate(CreateView):
     template_name = 'organizer/startup_form.html'
 
 
-class StartupDelete(ObjectDeleteMixin, View):
+class StartupDelete(DeleteView):
     model = Startup
     success_url = reverse_lazy(
         'organizer_startup_list')
@@ -132,7 +131,7 @@ class StartupList(View):
             request, self.template_name, context)
 
 
-class StartupUpdate(ObjectUpdateMixin, View):
+class StartupUpdate(UpdateView):
     form_class = StartupForm
     model = Startup
     template_name = (
@@ -144,7 +143,7 @@ class TagCreate(CreateView):
     template_name = 'organizer/tag_form.html'
 
 
-class TagDelete(ObjectDeleteMixin, View):
+class TagDelete(DeleteView):
     model = Tag
     success_url = reverse_lazy(
         'organizer_tag_list')
@@ -211,7 +210,7 @@ class TagPageList(View):
             request, self.template_name, context)
 
 
-class TagUpdate(ObjectUpdateMixin, View):
+class TagUpdate(UpdateView):
     form_class = TagForm
     model = Tag
     template_name = (
