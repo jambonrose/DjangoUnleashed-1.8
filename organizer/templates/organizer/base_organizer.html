@@ -1,1 +1,19 @@
 {% extends parent_template|default:"base.html" %}
+
+{% block content %}
+  <div class="row">
+    <section class="eight columns">
+      {% block org_content %}
+        This is default content!
+      {% endblock %}
+    </section>
+    <section class="desktop four columns">
+      {% block create_button %}{% endblock %}
+    </section>
+  </div>
+  <div class="row">
+    <div class="twelve columns">
+      {% block content_footer %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}
