@@ -4,8 +4,9 @@ from django.core.urlresolvers import (
     reverse, reverse_lazy)
 from django.shortcuts import render
 from django.views.generic import (
-    CreateView, DeleteView,
-    DetailView, UpdateView, View)
+    CreateView, DeleteView, DetailView, View)
+
+from core.utils import UpdateView
 
 from .forms import (
     NewsLinkForm, StartupForm, TagForm)
@@ -28,7 +29,6 @@ class NewsLinkDelete(DeleteView):
 class NewsLinkUpdate(UpdateView):
     form_class = NewsLinkForm
     model = NewsLink
-    template_name_suffix = '_form_update'
 
 
 class StartupCreate(CreateView):
@@ -91,7 +91,6 @@ class StartupList(View):
 class StartupUpdate(UpdateView):
     form_class = StartupForm
     model = Startup
-    template_name_suffix = '_form_update'
 
 
 class TagCreate(CreateView):
@@ -167,4 +166,3 @@ class TagPageList(View):
 class TagUpdate(UpdateView):
     form_class = TagForm
     model = Tag
-    template_name_suffix = '_form_update'
