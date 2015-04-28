@@ -5,14 +5,16 @@
 {% endblock %}
 
 {% block content %}
-  <div>
-    <div>
+  <div class="row">
+    <div class="offset-by-two eight columns">
       <form
           action="{% url 'organizer_newslink_create' %}"
           method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">
+        <button
+            class="button-primary"
+            type="submit">
           Link Article</button>
       </form>
     </div>

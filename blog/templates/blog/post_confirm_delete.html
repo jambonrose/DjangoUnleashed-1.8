@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-  <div>
-    <div>
+  <div class="row">
+    <div class="offset-by-two eight columns">
       <form
           action="{{ post.get_delete_url }}"
           method="post">
@@ -15,7 +15,9 @@
           Are you sure you want to delete
           the blog post titled {{ post.title }}?
         </p>
-        <a href="{{ post.get_absolute_url }}">
+        <a
+            href="{{ post.get_absolute_url }}"
+            class="button button-primary">
           Cancel</a>
         <button type="submit">
           Delete Blog Post</button>

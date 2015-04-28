@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-  <div>
-    <div>
+  <div class="row">
+    <div class="offset-by-two eight columns">
       <form
           action="{{ tag.get_delete_url }}"
           method="post">
@@ -15,7 +15,9 @@
           Are you sure you want to delete
           tag {{ tag.name }}?
         </p>
-        <a href="{{ tag.get_absolute_url }}">
+        <a
+            href="{{ tag.get_absolute_url }}"
+            class="button button-primary">
           Cancel</a>
         <button type="submit">Delete Tag</button>
       </form>
