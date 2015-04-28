@@ -91,8 +91,7 @@ class StartupList(View):
 class StartupUpdate(UpdateView):
     form_class = StartupForm
     model = Startup
-    template_name = (
-        'organizer/startup_form_update.html')
+    template_name_suffix = '_form_update'
 
 
 class TagCreate(CreateView):
@@ -168,5 +167,4 @@ class TagPageList(View):
 class TagUpdate(UpdateView):
     form_class = TagForm
     model = Tag
-    template_name = (
-        'organizer/tag_form_update.html')
+    template_name_suffix = '_form_update'
