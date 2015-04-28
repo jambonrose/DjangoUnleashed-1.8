@@ -4,14 +4,14 @@ from django.core.urlresolvers import (
     reverse, reverse_lazy)
 from django.shortcuts import (
     get_object_or_404, redirect, render)
-from django.views.generic import View
+from django.views.generic import DetailView, View
 
 from .forms import (
     NewsLinkForm, StartupForm, TagForm)
 from .models import NewsLink, Startup, Tag
 from .utils import (
-    DetailView, ObjectCreateMixin,
-    ObjectDeleteMixin, ObjectUpdateMixin)
+    ObjectCreateMixin, ObjectDeleteMixin,
+    ObjectUpdateMixin)
 
 
 class NewsLinkCreate(ObjectCreateMixin, View):
