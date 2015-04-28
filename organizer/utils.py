@@ -1,9 +1,10 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import (
     get_object_or_404, redirect, render)
+from django.views.generic import View
 
 
-class ObjectCreateMixin:
+class CreateView(View):
     form_class = None
     template_name = ''
 

@@ -10,11 +10,11 @@ from .forms import (
     NewsLinkForm, StartupForm, TagForm)
 from .models import NewsLink, Startup, Tag
 from .utils import (
-    ObjectCreateMixin, ObjectDeleteMixin,
+    CreateView, ObjectDeleteMixin,
     ObjectUpdateMixin)
 
 
-class NewsLinkCreate(ObjectCreateMixin, View):
+class NewsLinkCreate(CreateView):
     form_class = NewsLinkForm
     template_name = 'organizer/newslink_form.html'
 
@@ -73,7 +73,7 @@ class NewsLinkUpdate(View):
                 context)
 
 
-class StartupCreate(ObjectCreateMixin, View):
+class StartupCreate(CreateView):
     form_class = StartupForm
     template_name = 'organizer/startup_form.html'
 
@@ -139,7 +139,7 @@ class StartupUpdate(ObjectUpdateMixin, View):
         'organizer/startup_form_update.html')
 
 
-class TagCreate(ObjectCreateMixin, View):
+class TagCreate(CreateView):
     form_class = TagForm
     template_name = 'organizer/tag_form.html'
 
