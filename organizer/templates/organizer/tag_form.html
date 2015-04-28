@@ -5,12 +5,16 @@
 {% endblock %}
 
 {% block content %}
-  <form
-      action="{% url 'organizer_tag_create' %}"
-      method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">
-      Create Tag</button>
-  </form>
+  <div>
+    <div>
+      <form
+          action="{% url 'organizer_tag_create' %}"
+          method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+          Create Tag</button>
+      </form>
+    </div>
+  </div>
 {% endblock %}
