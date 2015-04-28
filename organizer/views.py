@@ -86,13 +86,15 @@ class StartupDelete(ObjectDeleteMixin, View):
         'organizer/startup_confirm_delete.html')
 
 
-def startup_detail(request, slug):
-    startup = get_object_or_404(
-        Startup, slug__iexact=slug)
-    return render(
-        request,
-        'organizer/startup_detail.html',
-        {'startup': startup})
+class StartupDetail(View):
+
+    def get(self, request, slug):
+        startup = get_object_or_404(
+            Startup, slug__iexact=slug)
+        return render(
+            request,
+            'organizer/startup_detail.html',
+            {'startup': startup})
 
 
 class StartupList(View):
@@ -157,13 +159,15 @@ class TagDelete(ObjectDeleteMixin, View):
         'organizer/tag_confirm_delete.html')
 
 
-def tag_detail(request, slug):
-    tag = get_object_or_404(
-        Tag, slug__iexact=slug)
-    return render(
-        request,
-        'organizer/tag_detail.html',
-        {'tag': tag})
+class TagDetail(View):
+
+    def get(self, request, slug):
+        tag = get_object_or_404(
+            Tag, slug__iexact=slug)
+        return render(
+            request,
+            'organizer/tag_detail.html',
+            {'tag': tag})
 
 
 class TagList(View):
