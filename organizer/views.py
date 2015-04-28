@@ -15,7 +15,7 @@ from .models import NewsLink, Startup, Tag
 
 class NewsLinkCreate(CreateView):
     form_class = NewsLinkForm
-    template_name = 'organizer/newslink_form.html'
+    model = NewsLink
 
 
 class NewsLinkDelete(View):
@@ -74,15 +74,13 @@ class NewsLinkUpdate(View):
 
 class StartupCreate(CreateView):
     form_class = StartupForm
-    template_name = 'organizer/startup_form.html'
+    model = Startup
 
 
 class StartupDelete(DeleteView):
     model = Startup
     success_url = reverse_lazy(
         'organizer_startup_list')
-    template_name = (
-        'organizer/startup_confirm_delete.html')
 
 
 class StartupDetail(DetailView):
@@ -140,15 +138,13 @@ class StartupUpdate(UpdateView):
 
 class TagCreate(CreateView):
     form_class = TagForm
-    template_name = 'organizer/tag_form.html'
+    model = Tag
 
 
 class TagDelete(DeleteView):
     model = Tag
     success_url = reverse_lazy(
         'organizer_tag_list')
-    template_name = (
-        'organizer/tag_confirm_delete.html')
 
 
 class TagDetail(DetailView):
