@@ -14,6 +14,18 @@ from .utils import (
     ObjectUpdateMixin)
 
 
+def model_list(request, model):
+    context_object_name = '{}_list'.format(
+        model._meta.model_name)
+    context = {
+        context_object_name: model.objects.all(),
+    }
+    template_name = (
+        'organizer/{}_list.html'.format(
+            model._meta.model_name))
+    return render(request, template_name, context)
+
+
 class NewsLinkCreate(ObjectCreateMixin, View):
     form_class = NewsLinkForm
     template_name = 'organizer/newslink_form.html'
