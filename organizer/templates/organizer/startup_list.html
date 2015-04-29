@@ -42,26 +42,3 @@
     {% endfor %}
   </ul>
 {% endblock %}
-
-{% block content_footer %}
-  {% if is_paginated %}
-    <ul class="pagination">
-      {% if previous_page_url %}
-        <li>
-          <a href="{{ previous_page_url }}">
-            Previous</a>
-        </li>
-      {% endif %}
-      <li>
-        Page {{ page_obj.number }}
-        of {{ paginator.num_pages }}
-      </li>
-      {% if next_page_url %}
-        <li>
-          <a href="{{ next_page_url }}">
-            Next</a>
-        </li>
-      {% endif %}
-    </ul>
-  {% endif %}
-{% endblock %}
