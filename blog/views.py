@@ -51,6 +51,7 @@ class PostDelete(View):
 class PostDetail(DateDetailView):
     date_field = 'pub_date'
     model = Post
+    month_format = '%m'
 
 
 class PostList(ArchiveIndexView):

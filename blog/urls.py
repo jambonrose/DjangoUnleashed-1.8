@@ -19,7 +19,7 @@ urlpatterns = [
         PostArchiveMonth.as_view(),
         name='blog_post_archive_month'),
     url(r'^(?P<year>\d{4})/'
-        r'(?P<month>[\w-]+)/'
+        r'(?P<month>\d{1,2})/'
         r'(?P<day>\d{1,2})/'
         r'(?P<slug>[\w\-]+)/$',
         PostDetail.as_view(),
