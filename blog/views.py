@@ -66,6 +66,6 @@ class PostList(ArchiveIndexView):
     template_name = 'blog/post_list.html'
 
 
-class PostUpdate(UpdateView):
+class PostUpdate(PostGetMixin, UpdateView):
     form_class = PostForm
     model = Post
