@@ -15,6 +15,12 @@
     <div class="row">
       <div class="twelve columns">
         <ul class="pagination">
+          {% if first_page_url %}
+            <li>
+              <a href="{{ first_page_url }}">
+                First</a>
+            </li>
+          {% endif %}
           {% if previous_page_url %}
             <li>
               <a href="{{ previous_page_url }}">
@@ -29,6 +35,12 @@
             <li>
               <a href="{{ next_page_url }}">
                 Next</a>
+            </li>
+          {% endif %}
+          {% if last_page_url %}
+            <li>
+              <a href="{{ last_page_url }}">
+                Last</a>
             </li>
           {% endif %}
         </ul>
