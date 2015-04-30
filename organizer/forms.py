@@ -20,31 +20,7 @@ class NewsLinkForm(
         SlugCleanMixin, forms.ModelForm):
     class Meta:
         model = NewsLink
-        exclude = ('startup',)
-
-    def clean(self):
-        cleaned_data = super().clean()
-        slug = cleaned_data.get('slug')
-        startup_obj = self.data.get('startup')
-        exists = (
-            NewsLink.objects.filter(
-                slug__iexact=slug,
-                startup=startup_obj,
-            ).exists())
-        if exists:
-            raise ValidationError(
-                "News articles with this Slug "
-                "and Startup already exists.")
-        else:
-            return cleaned_data
-
-    def save(self, **kwargs):
-        instance = super().save(commit=False)
-        instance.startup = (
-            self.data.get('startup'))
-        instance.save()
-        self.save_m2m()
-        return instance
+        fields = '__all__'
 
 
 class StartupForm(
