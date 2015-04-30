@@ -8,17 +8,22 @@ from .forms import (
     NewsLinkForm, StartupForm, TagForm)
 from .models import NewsLink, Startup, Tag
 from .utils import (
-    PageLinksMixin, StartupContextMixin)
+    NewsLinkGetObjectMixin, PageLinksMixin,
+    StartupContextMixin)
 
 
 class NewsLinkCreate(
-        StartupContextMixin, CreateView):
+        NewsLinkGetObjectMixin,
+        StartupContextMixin,
+        CreateView):
     form_class = NewsLinkForm
     model = NewsLink
 
 
 class NewsLinkDelete(
-        StartupContextMixin, DeleteView):
+        NewsLinkGetObjectMixin,
+        StartupContextMixin,
+        DeleteView):
     model = NewsLink
     slug_url_kwarg = 'newslink_slug'
 
@@ -28,7 +33,9 @@ class NewsLinkDelete(
 
 
 class NewsLinkUpdate(
-        StartupContextMixin, UpdateView):
+        NewsLinkGetObjectMixin,
+        StartupContextMixin,
+        UpdateView):
     form_class = NewsLinkForm
     model = NewsLink
     slug_url_kwarg = 'newslink_slug'

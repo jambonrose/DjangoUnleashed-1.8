@@ -1,6 +1,19 @@
 from django.shortcuts import get_object_or_404
 
-from .models import Startup
+from .models import NewsLink, Startup
+
+
+class NewsLinkGetObjectMixin():
+
+    def get_object(self, queryset=None):
+        startup_slug = self.kwargs.get(
+            self.startup_slug_url_kwarg)
+        newslink_slug = self.kwargs.get(
+            self.slug_url_kwarg)
+        return get_object_or_404(
+            NewsLink,
+            slug__iexact=newslink_slug,
+            startup__slug__iexact=startup_slug)
 
 
 class PageLinksMixin:
