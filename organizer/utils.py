@@ -1,4 +1,3 @@
-from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 
 from .models import NewsLink, Startup
@@ -6,15 +5,17 @@ from .models import NewsLink, Startup
 
 class NewsLinkFormMixin():
 
-    def form_valid(self, form):
-        startup = get_object_or_404(
-            Startup,
-            slug__iexact=self.kwargs.get(
-                self.startup_slug_url_kwarg))
-        self.object = form.save(
-            startup_obj=startup)
-        return HttpResponseRedirect(
-            self.get_success_url())
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if self.request.method in ('POST', 'PUT'):
+            self.startup = get_object_or_404(
+                Startup,
+                slug__iexact=self.kwargs.get(
+                    self.startup_slug_url_kwarg))
+            data = kwargs['data'].copy()
+            data.update({'startup': self.startup})
+            kwargs['data'] = data
+        return kwargs
 
 
 class NewsLinkGetObjectMixin():
