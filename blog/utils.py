@@ -4,6 +4,7 @@ from .models import Post
 
 
 class PostGetMixin:
+    date_field = 'pub_date'
     month_url_kwarg = 'month'
     year_url_kwarg = 'year'
 
@@ -26,8 +27,12 @@ class PostGetMixin:
             raise AttributeError(
                 self.errors['url_kwargs'].format(
                     self.__class__.__name__))
+        date_field = self.date_field
+        slug_field = self.get_slug_field()
+        filter_dict = {
+            date_field + '__year': year,
+            date_field + '__month': month,
+            slug_field: slug,
+        }
         return get_object_or_404(
-            Post,
-            pub_date__year=year,
-            pub_date__month=month,
-            slug__iexact=slug)
+            Post, **filter_dict)
