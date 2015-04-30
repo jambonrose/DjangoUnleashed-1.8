@@ -5,6 +5,7 @@ from .models import Post
 
 class PostGetMixin:
     date_field = 'pub_date'
+    model = Post
     month_url_kwarg = 'month'
     year_url_kwarg = 'year'
 
@@ -12,6 +13,8 @@ class PostGetMixin:
         'url_kwargs':
             "Generic view {} must be called with "
             "year, month, and slug.",
+        'not_exist':
+            "No {} by that date and slug.",
     }
 
     def get_object(self, queryset=None):
@@ -34,5 +37,14 @@ class PostGetMixin:
             date_field + '__month': month,
             slug_field: slug,
         }
-        return get_object_or_404(
-            Post, **filter_dict)
+        if queryset is None:
+            queryset = self.get_queryset()
+        queryset = queryset.filter(**filter_dict)
+        try:
+            obj = queryset.get()
+        except queryset.model.DoesNotExist:
+            raise Http404(
+                self.errors['not_exist'].format(
+                    queryset.model
+                    ._meta.verbose_name))
+        return obj
