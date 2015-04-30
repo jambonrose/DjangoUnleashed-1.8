@@ -7,7 +7,7 @@ from core.utils import UpdateView
 
 from .forms import PostForm
 from .models import Post
-from .utils import PostGetMixin
+from .utils import DateObjectMixin
 
 
 class PostArchiveMonth(MonthArchiveView):
@@ -27,12 +27,16 @@ class PostCreate(CreateView):
     model = Post
 
 
-class PostDelete(PostGetMixin, DeleteView):
+class PostDelete(DateObjectMixin, DeleteView):
+    allow_future = True
+    date_field = 'pub_date'
     model = Post
     success_url = reverse_lazy('blog_post_list')
 
 
-class PostDetail(PostGetMixin, DetailView):
+class PostDetail(DateObjectMixin, DetailView):
+    allow_future = True
+    date_field = 'pub_date'
     model = Post
 
 
@@ -47,6 +51,8 @@ class PostList(ArchiveIndexView):
     template_name = 'blog/post_list.html'
 
 
-class PostUpdate(PostGetMixin, UpdateView):
+class PostUpdate(DateObjectMixin, UpdateView):
+    allow_future = True
+    date_field = 'pub_date'
     form_class = PostForm
     model = Post
