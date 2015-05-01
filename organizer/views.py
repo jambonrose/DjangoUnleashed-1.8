@@ -1,5 +1,3 @@
-from django.contrib.auth.decorators import (
-    login_required, permission_required)
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import \
@@ -8,7 +6,9 @@ from django.views.generic import (
     CreateView, DeleteView, DetailView, ListView)
 
 from core.utils import UpdateView
-from user.decorators import custom_login_required
+from user.decorators import (
+    custom_login_required,
+    require_authenticated_permission)
 
 from .forms import (
     NewsLinkForm, StartupForm, TagForm)
@@ -88,11 +88,9 @@ class TagCreate(CreateView):
     form_class = TagForm
     model = Tag
 
-    @method_decorator(login_required)
     @method_decorator(
-        permission_required(
-            'organizer.add_tag',
-            raise_exception=True,
+        require_authenticated_permission(
+            'organizer.add_tag'
         ))
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(
