@@ -1,5 +1,6 @@
+from django.contrib.auth import PermissionDenied
 from django.contrib.auth.decorators import \
-    permission_required
+    user_passes_test
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import \
@@ -83,14 +84,21 @@ class StartupUpdate(UpdateView):
     model = Startup
 
 
+def in_contrib_group(user):
+    if user.groups.filter(
+            name='contributors').exists():
+        return True
+    else:
+        raise PermissionDenied
+
+
 class TagCreate(CreateView):
     form_class = TagForm
     model = Tag
 
     @method_decorator(
-        permission_required(
-            'organizer.add_tag',
-            raise_exception=True
+        user_passes_test(
+            in_contrib_group
         ))
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(
