@@ -90,6 +90,7 @@ class TagCreate(CreateView):
     @method_decorator(
         permission_required(
             'organizer.add_tag',
+            raise_exception=True
         ))
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(
