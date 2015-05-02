@@ -6,18 +6,24 @@
 
 {% block org_content %}
   <h2>{{ tag.name|title }}</h2>
+  {% if perms.organizer.change_tag or perms.organizer.delete_tag %}
     <ul class="inline">
+      {% if perms.organizer.change_tag %}
         <li>
           <a
               href="{{ tag.get_update_url }}"
               class="button">
             Edit Tag</a></li>
+      {% endif %}
+      {% if perms.organizer.delete_tag %}
         <li>
           <a
               href="{{ tag.get_delete_url }}"
               class="button">
             Delete Tag</a></li>
+      {% endif %}
     </ul>
+  {% endif %}
   {% if tag.startup_set.all %}
     <section>
       <h3>Startup{{ tag.startup_set.count|pluralize }}</h3>

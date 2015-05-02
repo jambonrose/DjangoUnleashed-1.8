@@ -9,18 +9,24 @@
   <div class="row">
   <div class="offset-by-two eight columns">
   <h2>{{ startup.name }}</h2>
+  {% if perms.organizer.change_startup or perms.organizer.delete_startup %}
     <ul class="inline">
+      {% if perms.organizer.change_startup %}
         <li>
           <a
               href="{{ startup.get_update_url }}"
               class="button">
             Edit Startup</a></li>
+      {% endif %}
+      {% if perms.organizer.delete_startup %}
         <li>
           <a
               href="{{ startup.get_delete_url }}"
               class="button">
             Delete Startup</a></li>
+      {% endif %}
     </ul>
+  {% endif %}
   <dl>
     <dt>Date Founded</dt>
       <dd>{{ startup.founded_date|date:"F jS, Y" }}</dd>
@@ -41,7 +47,7 @@
   {{ startup.description|linebreaks }}
   </div></div> <!-- row -->
 
-  {% if startup.newslink_set.all or startup.blog_posts.all %}
+  {% if startup.newslink_set.all or startup.blog_posts.all or perms.organizer.add_newslink %}
     <div class="row">
 
       {% if startup.newslink_set.all %}
@@ -51,36 +57,56 @@
           <section class="meta offset-by-two two-thirds column">
         {% endif %}
             <h3>Recent News</h3>
+            {% if perms.organizer.add_newslink %}
               <p>
                 <a
                     href="{{ startup.get_newslink_create_url }}"
                     class="button">
                   Add Article</a></p>
+            {% endif %}
             <ul>
               {% for newslink in startup.newslink_set.all %}
                 <li>
                   <a href="{{ newslink.link }}">
                     {{ newslink.title|title }}</a>
+                  {% if perms.organizer.change_newslink or perms.organizer.delete_newslink %}
                     <ul class="inline">
+                      {% if perms.organizer.change_newslink %}
                         <li>
                           <a
                               href="{{ newslink.get_update_url }}"
                               class="button">
                             Edit Link</a></li>
+                      {% endif %}
+                      {% if perms.organizer.delete_newslink %}
                         <li>
                           <a
                               href="{{ newslink.get_delete_url }}"
                               class="button">
                             Delete Link</a></li>
+                      {% endif %}
                     </ul>
+                  {% endif %}
                 </li>
               {% endfor %}
             </ul>
           </section>
+      {% elif perms.organizer.add_newslink %}
+        {% if startup.blog_posts.all %}
+          <section class="meta offset-by-two one-third column">
+        {% else %}
+          <section class="meta offset-by-two two-thirds column">
+        {% endif %}
+            <p>
+              <a
+                  href="{{ startup.get_newslink_create_url }}"
+                  class="button">
+                Add Article</a></p>
+          </section>
       {% endif %}
 
       {% if startup.blog_posts.all %}
-        {% if startup.newslink_set.all %}
+        {% if startup.newslink_set.all or perms.organizer.add_newslink %}
           <section class="meta one-third column">
         {% else %}
           <section class="meta offset-by-two two-thirds column">

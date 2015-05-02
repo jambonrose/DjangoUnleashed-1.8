@@ -7,12 +7,14 @@
 {% block content %}
   <div class="row">
     <div class="eight columns">
+      {% if perms.blog.add_post %}
         <div class="mobile">
           <a
               href="{% url 'blog_post_create' %}"
               class="button button-primary">
             Write New Blog Post</a>
         </div>
+      {% endif %}
       {% for post in post_list %}
         <article class="list-item">
           <header>
@@ -20,18 +22,24 @@
               <a href="{{ post.get_absolute_url }}">
                 {{ post.title|title }}</a>
             </h2>
+            {% if perms.blog.change_post or perms.blog.delete_post %}
               <ul class="inline">
+                {% if perms.blog.change_post %}
                   <li>
                     <a
                         href="{{ post.get_update_url }}"
                         class="button">
                       Edit Post</a></li>
+                {% endif %}
+                {% if perms.blog.delete_post %}
                   <li>
                     <a
                         href="{{ post.get_delete_url }}"
                         class="button">
                       Delete Post</a></li>
+                {% endif %}
               </ul>
+            {% endif %}
             <p>
               Written on:
               <time datetime="{{ post.pub_date|date:"Y-m-d" }}">
@@ -50,10 +58,12 @@
       {% endfor %}
     </div><!-- eight columns -->
     <div class="desktop four columns">
+      {% if perms.blog.add_post %}
         <a
           href="{% url 'blog_post_create' %}"
           class="button button-primary">
         Write New Blog Post</a>
+      {% endif %}
       <h3>Post Archives</h3>
       <ul>
         {% for y in date_list %}

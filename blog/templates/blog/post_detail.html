@@ -11,18 +11,24 @@
   <div class="offset-by-two eight columns">
     <header>
       <h2>{{ post.title|title }}</h2>
+      {% if perms.blog.change_post or perms.blog.delete_post %}
       <ul class="inline">
+        {% if perms.blog.change_post %}
         <li>
           <a
               href="{{ post.get_update_url }}"
               class="button">
             Edit Post</a></li>
+        {% endif %}
+        {% if perms.blog.delete_post %}
         <li>
           <a
               href="{{ post.get_delete_url }}"
               class="button">
             Delete Post</a></li>
+        {% endif %}
       </ul>
+      {% endif %}
       <p>
         Written on
         <time datetime="{{ post.pub_date|date:"Y-m-d" }}">

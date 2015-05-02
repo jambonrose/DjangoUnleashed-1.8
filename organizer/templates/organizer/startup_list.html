@@ -5,37 +5,47 @@
 {% endblock %}
 
 {% block create_button %}
+  {% if perms.organizer.add_startup %}
     <a
         href="{% url 'organizer_startup_create' %}"
         class="button button-primary">
       Create New Startup</a>
+  {% endif %}
 {% endblock %}
 
 {% block org_content %}
   <h2>Startup List</h2>
+  {% if perms.organizer.add_startup %}
     <div class="mobile">
       <a
           href="{% url 'organizer_startup_create' %}"
           class="button button-primary">
         Create New Startup</a>
     </div>
+  {% endif %}
   <ul>
     {% for startup in startup_list %}
       <li>
         <a href="{{ startup.get_absolute_url }}">
           {{ startup.name }}</a>
+        {% if perms.organizer.change_startup or perms.organizer.delete_startup %}
           <ul class="inline">
+            {% if perms.organizer.change_startup %}
               <li>
                 <a
                     href="{{ startup.get_update_url }}"
                     class="button">
                   Edit Startup</a></li>
+            {% endif %}
+            {% if perms.organizer.delete_startup %}
               <li>
                 <a
                     href="{{ startup.get_delete_url }}"
                     class="button">
                   Delete Startup</a></li>
+            {% endif %}
           </ul>
+        {% endif %}
       </li>
     {% empty %}
       <li><em>No Startups Available</em></li>
