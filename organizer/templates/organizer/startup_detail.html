@@ -47,11 +47,11 @@
   {{ startup.description|linebreaks }}
   </div></div> <!-- row -->
 
-  {% if startup.newslink_set.all or startup.blog_posts.all or perms.organizer.add_newslink %}
+  {% if startup.newslink_set.all or perms.blog.view_future_post and startup.blog_posts.all or startup.published_posts|length > 0 or perms.organizer.add_newslink %}
     <div class="row">
 
       {% if startup.newslink_set.all %}
-        {% if startup.blog_posts.all  %}
+        {% if perms.blog.view_future_post and startup.blog_posts.all or startup.published_posts|length > 0 %}
           <section class="meta offset-by-two one-third column">
         {% else %}
           <section class="meta offset-by-two two-thirds column">
@@ -92,7 +92,7 @@
             </ul>
           </section>
       {% elif perms.organizer.add_newslink %}
-        {% if startup.blog_posts.all %}
+        {% if perms.blog.view_future_post and startup.blog_posts.all or startup.published_posts|length > 0 %}
           <section class="meta offset-by-two one-third column">
         {% else %}
           <section class="meta offset-by-two two-thirds column">
@@ -105,12 +105,13 @@
           </section>
       {% endif %}
 
-      {% if startup.blog_posts.all %}
+      {% if perms.blog.view_future_post and startup.blog_posts.all or startup.published_posts|length > 0 %}
         {% if startup.newslink_set.all or perms.organizer.add_newslink %}
           <section class="meta one-third column">
         {% else %}
           <section class="meta offset-by-two two-thirds column">
         {% endif %}
+        {% if perms.blog.view_future_post and startup.blog_posts.all %}
             <h3>Blog Post{{ startup.blog_posts.all|pluralize }}</h3>
             <ul>
               {% for post in startup.blog_posts.all %}
@@ -120,6 +121,17 @@
                 </li>
               {% endfor %}
             </ul>
+        {% elif startup.published_posts|length > 0 %}
+            <h3>Blog Post{{ startup.published_posts|pluralize }}</h3>
+            <ul>
+              {% for post in startup.published_posts %}
+                <li>
+                  <a href="{{ post.get_absolute_url }}">
+                    {{ post.title|title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+        {% endif %}
           </section>
       {% endif %}
 
