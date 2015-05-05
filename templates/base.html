@@ -33,6 +33,8 @@
               <li><a href="{% url 'dj-auth:logout' %}?next={{ request.path }}">
                 Log Out</a></li>
             {% else %}
+              <li><a href="{% url 'dj-auth:create' %}">
+                Register</a></li>
               <li><a href="{% url 'dj-auth:login' %}?next={{ request.path }}">
                 Log In</a></li>
             {% endif %}

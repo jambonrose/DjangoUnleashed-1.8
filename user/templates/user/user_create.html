@@ -1,0 +1,20 @@
+{% extends parent_template|default:"user/base_user.html" %}
+
+{% block title %}
+{{ block.super }} - Create Account
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="offset-by-two eight columns">
+      <form
+          action="{% url 'dj-auth:create' %}"
+          method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+          Create New Account</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
