@@ -1,24 +1,22 @@
 {% extends parent_template|default:"user/base_user.html" %}
 
 {% block title %}
-{{ block.super }} - Create Account
+{{ block.super }} - Resend Activation E-Mail
 {% endblock %}
 
 {% block content %}
   <div class="row">
     <div class="offset-by-two eight columns">
       <div class="center">
-        <a href="{% url 'dj-auth:resend_activation' %}">
-          Lost Activation E-Mail?</a>
+        <p>Resend your account activation email.</p>
       </div>
       <form
-          action="{% url 'dj-auth:create' %}"
+          action="{% url 'dj-auth:resend_activation' %}"
           method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">
-          Create New Account</button>
+          Resend Activation E-Mail</button>
       </form>
-    </div>
-  </div>
+  </div></div>
 {% endblock %}
