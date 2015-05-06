@@ -1,14 +1,22 @@
 from django.contrib.auth.decorators import (
     login_required, permission_required)
+from django.core.exceptions import \
+    ImproperlyConfigured
 from django.utils.decorators import \
     method_decorator
+from django.views.generic import View
 
 
-def custom_login_required(view):
-    # view argument must be a method
+def class_login_required(cls):
+    if (not isinstance(cls, type)
+            or not issubclass(cls, View)):
+        raise ImproperlyConfigured(
+            "class_login_required"
+            " must be applied to subclasses "
+            "of View class.")
     decorator = method_decorator(login_required)
-    decorated_view = decorator(view)
-    return decorated_view
+    cls.dispatch = decorator(cls.dispatch)
+    return cls
 
 
 def require_authenticated_permission(permission):

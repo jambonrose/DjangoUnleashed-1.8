@@ -5,7 +5,7 @@ from django.views.generic import (
 
 from core.utils import UpdateView
 from user.decorators import (
-    custom_login_required,
+    class_login_required,
     require_authenticated_permission)
 
 from .forms import (
@@ -108,11 +108,7 @@ class TagList(PageLinksMixin, ListView):
     model = Tag
 
 
+@class_login_required
 class TagUpdate(UpdateView):
     form_class = TagForm
     model = Tag
-
-    @custom_login_required
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(
-            request, *args, **kwargs)
