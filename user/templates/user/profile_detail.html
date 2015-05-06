@@ -7,13 +7,18 @@
 
 {% block content %}
   <div class="row">
+    {% if user.pk == profile.user.pk %}
       <div class="offset-by-two five columns">
+    {% else %}
+      <div class="offset-by-two eight columns">
+    {% endif%}
 
     <h2>About {{ profile.user.get_username }}</h2>
     {{ profile.about|default:"No Profile"|linebreaks }}
 
     </div><!-- columns -->
 
+    {% if user.pk == profile.user.pk %}
       <div class="three columns">
         <ul class="task-list">
           <li><a href="{{ profile.get_update_url }}">
@@ -24,6 +29,7 @@
             Disable Account</a></li>
         </ul>
       </div>
+    {% endif%}
 
   </div><!-- row -->
 {% endblock %}

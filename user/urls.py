@@ -10,7 +10,7 @@ from django.views.generic import (
 from .views import (
     ActivateAccount, CreateAccount,
     DisableAccount, ProfileDetail, ProfileUpdate,
-    ResendActivationEmail)
+    PublicProfileDetail, ResendActivationEmail)
 
 password_urls = [
     url(r'^$',
@@ -111,4 +111,7 @@ urlpatterns = [
     url(r'^profile/edit/$',
         ProfileUpdate.as_view(),
         name='profile_update'),
+    url(r'^(?P<slug>[\w\-]+)/$',
+        PublicProfileDetail.as_view(),
+        name='public_profile'),
 ]

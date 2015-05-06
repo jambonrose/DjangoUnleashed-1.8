@@ -131,6 +131,10 @@ class ProfileDetail(
     model = Profile
 
 
+class PublicProfileDetail(DetailView):
+    model = Profile
+
+
 @class_login_required
 class ProfileUpdate(
         ProfileGetObjectMixin, UpdateView):
