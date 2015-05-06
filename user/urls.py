@@ -9,7 +9,8 @@ from django.views.generic import (
 
 from .views import (
     ActivateAccount, CreateAccount,
-    DisableAccount, ResendActivationEmail)
+    DisableAccount, ProfileDetail,
+    ResendActivationEmail)
 
 password_urls = [
     url(r'^$',
@@ -104,4 +105,7 @@ urlpatterns = [
              {'form': AuthenticationForm}},
         name='logout'),
     url(r'^password/', include(password_urls)),
+    url(r'^profile/$',
+        ProfileDetail.as_view(),
+        name='profile'),
 ]

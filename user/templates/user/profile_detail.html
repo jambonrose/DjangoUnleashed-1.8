@@ -1,0 +1,27 @@
+{% extends parent_template|default:"user/base_user.html" %}
+
+{% block title %}
+{{ block.super }} -
+{{ profile.user.get_username }}'s Profile
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+      <div class="offset-by-two five columns">
+
+    <h2>About {{ profile.user.get_username }}</h2>
+    {{ profile.about|default:"No Profile"|linebreaks }}
+
+    </div><!-- columns -->
+
+      <div class="three columns">
+        <ul class="task-list">
+          <li><a href="{% url 'dj-auth:pw_change' %}">
+            Change Password</a></li>
+          <li><a href="{% url 'dj-auth:disable' %}">
+            Disable Account</a></li>
+        </ul>
+      </div>
+
+  </div><!-- row -->
+{% endblock %}
