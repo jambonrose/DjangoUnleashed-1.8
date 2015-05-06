@@ -82,15 +82,11 @@ class StartupUpdate(UpdateView):
     model = Startup
 
 
+@require_authenticated_permission(
+    'organizer.add_tag')
 class TagCreate(CreateView):
     form_class = TagForm
     model = Tag
-
-    @require_authenticated_permission(
-        'organizer.add_tag')
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(
-            request, *args, **kwargs)
 
 
 class TagDelete(DeleteView):

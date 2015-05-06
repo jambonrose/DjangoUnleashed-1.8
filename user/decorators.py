@@ -21,8 +21,13 @@ def class_login_required(cls):
 
 def require_authenticated_permission(permission):
 
-    def decorator(view):
-        # view must be a method
+    def decorator(cls):
+        if (not isinstance(cls, type)
+                or not issubclass(cls, View)):
+            raise ImproperlyConfigured(
+                "require_authenticated_permission"
+                " must be applied to subclasses "
+                "of View class.")
         check_auth = (
             method_decorator(login_required))
         check_perm = (
@@ -31,8 +36,8 @@ def require_authenticated_permission(permission):
                     permission,
                     raise_exception=True)))
 
-        decorated_view = (
-            check_auth(check_perm(view)))
-        return decorated_view
+        cls.dispatch = (
+            check_auth(check_perm(cls.dispatch)))
+        return cls
 
     return decorator
