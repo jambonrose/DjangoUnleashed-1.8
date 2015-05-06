@@ -14,11 +14,14 @@ def custom_login_required(view):
 def require_authenticated_permission(permission):
 
     def decorator(view):
-        # view must be a function
-        check_auth = login_required
+        # view must be a method
+        check_auth = (
+            method_decorator(login_required))
         check_perm = (
-            permission_required(
-                permission, raise_exception=True))
+            method_decorator(
+                permission_required(
+                    permission,
+                    raise_exception=True)))
 
         decorated_view = (
             check_auth(check_perm(view)))
