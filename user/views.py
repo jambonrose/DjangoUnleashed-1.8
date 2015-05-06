@@ -23,6 +23,8 @@ from django.views.decorators.debug import \
     sensitive_post_parameters
 from django.views.generic import DetailView, View
 
+from core.utils import UpdateView
+
 from .decorators import class_login_required
 from .forms import (
     ResendActivationEmailForm, UserCreationForm)
@@ -126,6 +128,13 @@ class DisableAccount(View):
 @class_login_required
 class ProfileDetail(
         ProfileGetObjectMixin, DetailView):
+    model = Profile
+
+
+@class_login_required
+class ProfileUpdate(
+        ProfileGetObjectMixin, UpdateView):
+    fields = ('about',)
     model = Profile
 
 

@@ -16,6 +16,8 @@
 
       <div class="three columns">
         <ul class="task-list">
+          <li><a href="{{ profile.get_update_url }}">
+            Edit Your Profile</a></li>
           <li><a href="{% url 'dj-auth:pw_change' %}">
             Change Password</a></li>
           <li><a href="{% url 'dj-auth:disable' %}">
