@@ -8,6 +8,7 @@ from django.views.generic import (
     CreateView, DeleteView, DetailView, ListView)
 
 from core.utils import UpdateView
+from user.decorators import custom_login_required
 
 from .forms import (
     NewsLinkForm, StartupForm, TagForm)
@@ -117,7 +118,7 @@ class TagUpdate(UpdateView):
     form_class = TagForm
     model = Tag
 
-    @method_decorator(login_required)
+    @method_decorator(custom_login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(
             request, *args, **kwargs)
