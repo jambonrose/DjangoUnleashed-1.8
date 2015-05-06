@@ -118,7 +118,7 @@ class TagUpdate(UpdateView):
     form_class = TagForm
     model = Tag
 
-    @method_decorator(custom_login_required)
+    @custom_login_required
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(
             request, *args, **kwargs)
