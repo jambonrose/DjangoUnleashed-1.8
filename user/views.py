@@ -89,7 +89,8 @@ class CreateAccount(MailContextViewMixin, View):
                     bound_form.non_field_errors())
                 for err in errs:
                     error(request, err)
-                # TODO: redirect to email resend
+                return redirect(
+                    'dj-auth:resend_activation')
         return TemplateResponse(
             request,
             self.template_name,
