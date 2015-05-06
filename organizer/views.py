@@ -1,6 +1,6 @@
 from django.contrib.auth import PermissionDenied
-from django.contrib.auth.decorators import \
-    user_passes_test
+from django.contrib.auth.decorators import (
+    login_required, user_passes_test)
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import \
@@ -123,3 +123,8 @@ class TagList(PageLinksMixin, ListView):
 class TagUpdate(UpdateView):
     form_class = TagForm
     model = Tag
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(
+            request, *args, **kwargs)
