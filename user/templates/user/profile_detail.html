@@ -2,7 +2,7 @@
 
 {% block title %}
 {{ block.super }} -
-{{ profile.user.get_username }}'s Profile
+{{ profile.user.get_full_name }}'s Profile
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@
       <div class="offset-by-two eight columns">
     {% endif%}
 
-    <h2>About {{ profile.user.get_username }}</h2>
+    <h2>About {{ profile.user.get_full_name }}</h2>
     {{ profile.about|default:"No Profile"|linebreaks }}
 
     </div><!-- columns -->
