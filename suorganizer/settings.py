@@ -80,6 +80,12 @@ TEMPLATES = [{
 WSGI_APPLICATION = 'suorganizer.wsgi.application'
 
 
+# User
+# https://docs.djangoproject.com/en/1.8/topics/auth/customizing/#substituting-a-custom-user-model
+
+AUTH_USER_MODEL = 'user.User'
+
+
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
