@@ -10,7 +10,8 @@ from user.decorators import \
 from .forms import PostForm
 from .models import Post
 from .utils import (
-    AllowFuturePermissionMixin, DateObjectMixin)
+    AllowFuturePermissionMixin, DateObjectMixin,
+    PostFormValidMixin)
 
 
 class PostArchiveMonth(
@@ -31,7 +32,7 @@ class PostArchiveYear(
 
 @require_authenticated_permission(
     'blog.add_post')
-class PostCreate(CreateView):
+class PostCreate(PostFormValidMixin, CreateView):
     form_class = PostForm
     model = Post
 
@@ -63,7 +64,10 @@ class PostList(
 
 @require_authenticated_permission(
     'blog.change_post')
-class PostUpdate(DateObjectMixin, UpdateView):
+class PostUpdate(
+        PostFormValidMixin,
+        DateObjectMixin,
+        UpdateView):
     date_field = 'pub_date'
     form_class = PostForm
     model = Post
