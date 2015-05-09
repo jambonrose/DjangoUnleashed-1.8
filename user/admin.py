@@ -2,4 +2,16 @@ from django.contrib import admin
 
 from .models import User
 
-admin.site.register(User)
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    # list view
+    list_display = (
+        'email',
+        'is_staff',
+        'is_superuser')
+    list_filter = (
+        'is_staff',
+        'is_superuser',
+        'profile__joined')
+    search_fields = ('email',)
