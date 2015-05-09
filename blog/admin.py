@@ -7,3 +7,4 @@ from .models import Post
 class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'pub_date'
     list_display = ('title', 'pub_date')
+    list_filter = ('pub_date',)
