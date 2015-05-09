@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db.models import Count
 
 from .models import Post
 
@@ -24,6 +25,12 @@ class PostAdmin(admin.ModelAdmin):
     filter_horizontal = ('tags', 'startups',)
     prepopulated_fields = {"slug": ("title",)}
 
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        return queryset.annotate(
+            tag_number=Count('tags'))
+
     def tag_count(self, post):
-        return post.tags.count()
+        return post.tag_number
     tag_count.short_description = 'Number of Tags'
+    tag_count.admin_order_field = 'tag_number'
