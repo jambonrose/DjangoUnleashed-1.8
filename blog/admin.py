@@ -23,3 +23,7 @@ class PostAdmin(admin.ModelAdmin):
     )
     filter_horizontal = ('tags', 'startups',)
     prepopulated_fields = {"slug": ("title",)}
+
+    def tag_count(self, post):
+        return post.tags.count()
+    tag_count.short_description = 'Number of Tags'
