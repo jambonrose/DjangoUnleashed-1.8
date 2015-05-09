@@ -45,6 +45,9 @@
               <time datetime="{{ post.pub_date|date:"Y-m-d" }}">
                 {{ post.pub_date|date:"l, F j, Y" }}
               </time>
+              by
+              <a href="{{ post.author.get_absolute_url }}">
+                {{ post.author.profile.name }}</a>
             </p>
           </header>
           <p>{{ post.text|truncatewords:20 }}</p>

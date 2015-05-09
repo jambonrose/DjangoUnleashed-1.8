@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.conf import settings
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager,
@@ -99,3 +101,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.profile.name
+
+    def published_posts(self):
+        return self.blog_posts.filter(
+            pub_date__lt=date.today())
