@@ -19,6 +19,21 @@ class UserAdmin(admin.ModelAdmin):
         'profile__joined')
     ordering = ('email',)
     search_fields = ('email',)
+    # form view
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Permissions', {
+            'fields': (
+                'is_active',
+                'is_staff',
+                'is_superuser',
+                'groups',
+                'user_permissions')}),
+        ('Important dates', {
+            'fields': ('last_login',)}),
+    )
+    filter_horizontal = (
+        'groups', 'user_permissions',)
 
     def get_date_joined(self, user):
         return user.profile.joined
