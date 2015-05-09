@@ -12,6 +12,7 @@ class UserAdmin(admin.ModelAdmin):
         'get_date_joined',
         'is_staff',
         'is_superuser')
+    list_display_links = ('get_name', 'email')
     list_filter = (
         'is_staff',
         'is_superuser',
