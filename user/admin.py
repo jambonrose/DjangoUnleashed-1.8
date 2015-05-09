@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from .forms import UserCreationForm
 from .models import User
 
 
@@ -20,24 +21,7 @@ class UserAdmin(admin.ModelAdmin):
     ordering = ('email',)
     search_fields = ('email',)
     # form view
-    fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email',)}),
-        ('Permissions', {
-            'classes': ('collapse',),
-            'fields': (
-                'is_active',
-                'is_staff',
-                'is_superuser',
-                'groups',
-                'user_permissions')}),
-        ('Important dates', {
-            'classes': ('collapse',),
-            'fields': ('last_login',)}),
-    )
-    filter_horizontal = (
-        'groups', 'user_permissions',)
+    form = UserCreationForm
 
     def get_date_joined(self, user):
         return user.profile.joined
