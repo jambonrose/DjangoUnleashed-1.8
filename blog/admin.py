@@ -8,3 +8,4 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'pub_date'
     list_display = ('title', 'pub_date')
     list_filter = ('pub_date',)
+    search_fields = ('title', 'text')
