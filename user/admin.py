@@ -1,4 +1,25 @@
+from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.admin.options import \
+    IS_POPUP_VAR
+from django.contrib.admin.utils import unquote
+from django.contrib.auth import \
+    update_session_auth_hash
+from django.contrib.auth.forms import \
+    AdminPasswordChangeForm
+from django.contrib.messages import success
+from django.core.exceptions import \
+    PermissionDenied
+from django.http import (
+    Http404, HttpResponseRedirect)
+from django.template.response import \
+    TemplateResponse
+from django.utils.decorators import \
+    method_decorator
+from django.utils.encoding import force_text
+from django.utils.html import escape
+from django.views.decorators.debug import \
+    sensitive_post_parameters
 
 from .forms import UserCreationForm
 from .models import User
@@ -49,6 +70,10 @@ class UserAdmin(admin.ModelAdmin):
         }),
     )
     add_form = UserCreationForm
+    # password
+    change_password_form = AdminPasswordChangeForm
+    change_user_password_template = (
+        'admin/auth/user/change_password.html')
 
     def get_date_joined(self, user):
         return user.profile.joined
@@ -72,3 +97,69 @@ class UserAdmin(admin.ModelAdmin):
             kwargs['form'] = self.add_form
         return super().get_form(
             request, obj, **kwargs)
+
+    def get_urls(self):
+        password_change = [
+            url(r'^(.+)/password/$',
+                self.admin_site.admin_view(
+                    self.user_change_password),
+                name='auth_user_password_change'),
+        ]
+        urls = super().get_urls()
+        urls = password_change + urls
+        return urls
+
+    @method_decorator(sensitive_post_parameters())
+    def user_change_password(
+            self, request, user_id, form_url=''):
+        if not self.has_change_permission(
+                request):
+            raise PermissionDenied
+        user = self.get_object(
+            request, unquote(user_id))
+        if user is None:
+            raise Http404(
+                '{name} object with primary key '
+                '{key} does not exist.'.format(
+                    name=force_text(
+                        self.model
+                        ._meta.verbose_name),
+                    key=escape(user_id)))
+        if request.method == 'POST':
+            form = self.change_password_form(
+                user, request.POST)
+            if form.is_valid():
+                form.save()
+                change_message = (
+                    self.construct_change_message(
+                        request, form, None))
+                self.log_change(
+                    request, user, change_message)
+                success(
+                    request, 'Password changed.')
+                update_session_auth_hash(
+                    request, form.user)
+                return HttpResponseRedirect('..')
+        else:
+            form = self.change_password_form(user)
+
+        context = {
+            'title': 'Change password: {}'.format(
+                escape(user.get_username())),
+            'form_url': form_url,
+            'form': form,
+            'is_popup': (
+                IS_POPUP_VAR in request.POST
+                or IS_POPUP_VAR in request.GET),
+            'opts': self.model._meta,
+            'original': user,
+        }
+        context.update(
+            admin.site.each_context(request))
+
+        request.current_app = self.admin_site.name
+
+        return TemplateResponse(
+            request,
+            self.change_user_password_template,
+            context)
