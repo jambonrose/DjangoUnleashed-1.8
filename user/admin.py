@@ -7,6 +7,7 @@ from .models import User
 class UserAdmin(admin.ModelAdmin):
     # list view
     list_display = (
+        'get_name',
         'email',
         'get_date_joined',
         'is_staff',
@@ -23,3 +24,8 @@ class UserAdmin(admin.ModelAdmin):
     get_date_joined.short_description = 'Joined'
     get_date_joined.admin_order_field = (
         'profile__joined')
+
+    def get_name(self, user):
+        return user.profile.name
+    get_name.short_description = 'Name'
+    get_name.admin_order_field = 'profile__name'
