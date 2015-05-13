@@ -14,4 +14,5 @@ class UserAdmin(admin.ModelAdmin):
         'is_staff',
         'is_superuser',
         'profile__joined')
+    ordering = ('email',)
     search_fields = ('email',)
