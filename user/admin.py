@@ -21,7 +21,7 @@ class UserAdmin(admin.ModelAdmin):
     ordering = ('email',)
     search_fields = ('email',)
     # form view
-    form = UserCreationForm
+    add_form = UserCreationForm
 
     def get_date_joined(self, user):
         return user.profile.joined
@@ -33,3 +33,10 @@ class UserAdmin(admin.ModelAdmin):
         return user.profile.name
     get_name.short_description = 'Name'
     get_name.admin_order_field = 'profile__name'
+
+    def get_form(
+            self, request, obj=None, **kwargs):
+        if obj is None:
+            kwargs['form'] = self.add_form
+        return super().get_form(
+            request, obj, **kwargs)
