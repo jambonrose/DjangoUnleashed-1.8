@@ -23,7 +23,7 @@ class UserAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password')}),
+            'fields': ('email',)}),
         ('Permissions', {
             'classes': ('collapse',),
             'fields': (
