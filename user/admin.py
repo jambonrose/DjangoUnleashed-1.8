@@ -21,8 +21,11 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ('email',)
     # form view
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'password')}),
         ('Permissions', {
+            'classes': ('collapse',),
             'fields': (
                 'is_active',
                 'is_staff',
@@ -30,6 +33,7 @@ class UserAdmin(admin.ModelAdmin):
                 'groups',
                 'user_permissions')}),
         ('Important dates', {
+            'classes': ('collapse',),
             'fields': ('last_login',)}),
     )
     filter_horizontal = (
