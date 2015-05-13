@@ -20,3 +20,4 @@ class PostAdmin(admin.ModelAdmin):
             'fields': (
                 'tags', 'startups')}),
     )
+    prepopulated_fields = {"slug": ("title",)}
