@@ -21,6 +21,33 @@ class UserAdmin(admin.ModelAdmin):
     ordering = ('email',)
     search_fields = ('email',)
     # form view
+    fieldsets = (
+        (None, {
+            'fields': ('email',)}),
+        ('Permissions', {
+            'classes': ('collapse',),
+            'fields': (
+                'is_active',
+                'is_staff',
+                'is_superuser',
+                'groups',
+                'user_permissions')}),
+        ('Important dates', {
+            'classes': ('collapse',),
+            'fields': ('last_login',)}),
+    )
+    filter_horizontal = (
+        'groups', 'user_permissions',)
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': (
+                'name',
+                'email',
+                'password1',
+                'password2')
+        }),
+    )
     add_form = UserCreationForm
 
     def get_date_joined(self, user):
@@ -33,6 +60,11 @@ class UserAdmin(admin.ModelAdmin):
         return user.profile.name
     get_name.short_description = 'Name'
     get_name.admin_order_field = 'profile__name'
+
+    def get_fieldsets(self, request, obj=None):
+        if not obj:
+            return self.add_fieldsets
+        return super().get_fieldsets(request, obj)
 
     def get_form(
             self, request, obj=None, **kwargs):
