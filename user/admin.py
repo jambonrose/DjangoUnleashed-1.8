@@ -21,7 +21,8 @@ from django.utils.html import escape
 from django.views.decorators.debug import \
     sensitive_post_parameters
 
-from .forms import UserCreationForm
+from .forms import (
+    UserChangeForm, UserCreationForm)
 from .models import User
 
 
@@ -44,7 +45,7 @@ class UserAdmin(admin.ModelAdmin):
     # form view
     fieldsets = (
         (None, {
-            'fields': ('email',)}),
+            'fields': ('email', 'password')}),
         ('Permissions', {
             'classes': ('collapse',),
             'fields': (
@@ -70,6 +71,7 @@ class UserAdmin(admin.ModelAdmin):
         }),
     )
     add_form = UserCreationForm
+    form = UserChangeForm
     # password
     change_password_form = AdminPasswordChangeForm
     change_user_password_template = (
