@@ -27,7 +27,12 @@ from .models import Profile, User
 
 
 class ProfileAdminInline(admin.StackedInline):
+    can_delete = False
     model = Profile
+    exclude = ('slug',)
+
+    def view_on_site(self, obj):
+        return obj.get_absolute_url()
 
 
 @admin.register(User)
