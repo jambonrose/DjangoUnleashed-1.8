@@ -38,6 +38,7 @@ class ProfileAdminInline(admin.StackedInline):
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     # list view
+    actions = ['make_staff']
     list_display = (
         'get_name',
         'email',
@@ -182,3 +183,16 @@ class UserAdmin(admin.ModelAdmin):
             request,
             self.change_user_password_template,
             context)
+
+    def make_staff(self, request, queryset):
+        rows_updated = queryset.update(
+            is_staff=True)
+        if rows_updated == 1:
+            message = '1 user was'
+        else:
+            message = '{} users were'.format(
+                rows_updated)
+        message += ' successfully made staff.'
+        self.message_user(request, message)
+    make_staff.short_description = (
+        'Allow user to access Admin Site.')
