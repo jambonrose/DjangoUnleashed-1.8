@@ -8,6 +8,12 @@ from django.core.urlresolvers import reverse
 from django.db import models
 
 
+class ProfileManager(models.Manager):
+
+    def get_by_natural_key(self, slug):
+        return self.get(slug=slug)
+
+
 class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL)
@@ -21,6 +27,8 @@ class Profile(models.Model):
         "Date Joined",
         auto_now_add=True)
 
+    objects = ProfileManager()
+
     def __str__(self):
         return self.user.get_username()
 
@@ -31,6 +39,10 @@ class Profile(models.Model):
 
     def get_update_url(self):
         return reverse('dj-auth:profile_update')
+
+    def natural_key(self):
+        return (self.slug,)
+    natural_key.dependencies = ['user.user']
 
 
 class UserManager(BaseUserManager):
@@ -65,6 +77,9 @@ class UserManager(BaseUserManager):
             email, password,
             is_staff=True, is_superuser=True,
             **extra_fields)
+
+    def get_by_natural_key(self, email):
+        return self.get(email=email)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -105,3 +120,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     def published_posts(self):
         return self.blog_posts.filter(
             pub_date__lt=date.today())
+
+    def natural_key(self):
+        return (self.email,)

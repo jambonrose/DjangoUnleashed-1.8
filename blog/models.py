@@ -18,6 +18,18 @@ class PostQueryset(models.QuerySet):
             pub_date__lte=date.today())
 
 
+class BasePostManager(models.Manager):
+
+    def get_by_natural_key(self, pub_date, slug):
+        return self.get(
+            pub_date=pub_date,
+            slug=slug)
+
+
+PostManager = BasePostManager.from_queryset(
+    PostQueryset)
+
+
 class Post(models.Model):
     title = models.CharField(max_length=63)
     slug = models.SlugField(
@@ -40,7 +52,7 @@ class Post(models.Model):
         blank=True,
         related_name='blog_posts')
 
-    objects = PostQueryset.as_manager()
+    objects = PostManager()
 
     class Meta:
         verbose_name = 'blog post'
@@ -87,3 +99,13 @@ class Post(models.Model):
             kwargs={'year': self.pub_date.year,
                     'month': self.pub_date.month,
                     'slug': self.slug})
+
+    def natural_key(self):
+        return (
+            self.pub_date,
+            self.slug)
+    natural_key.dependencies = [
+        'organizer.startup',
+        'organizer.tag',
+        'user.user',
+    ]

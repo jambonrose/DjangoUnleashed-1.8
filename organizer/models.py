@@ -8,6 +8,12 @@ from django.db import models
 # https://docs.djangoproject.com/en/1.8/ref/models/fields/
 
 
+class TagManager(models.Manager):
+
+    def get_by_natural_key(self, slug):
+        return self.get(slug=slug)
+
+
 class Tag(models.Model):
     name = models.CharField(
         max_length=31, unique=True)
@@ -15,6 +21,8 @@ class Tag(models.Model):
         max_length=31,
         unique=True,
         help_text='A label for URL config.')
+
+    objects = TagManager()
 
     class Meta:
         ordering = ['name']
@@ -38,6 +46,15 @@ class Tag(models.Model):
         return self.blog_posts.filter(
             pub_date__lt=date.today())
 
+    def natural_key(self):
+        return (self.slug,)
+
+
+class StartupManager(models.Manager):
+
+    def get_by_natural_key(self, slug):
+        return self.get(slug=slug)
+
 
 class Startup(models.Model):
     name = models.CharField(
@@ -52,6 +69,8 @@ class Startup(models.Model):
     contact = models.EmailField()
     website = models.URLField(max_length=255)
     tags = models.ManyToManyField(Tag, blank=True)
+
+    objects = StartupManager()
 
     class Meta:
         ordering = ['name']
@@ -81,6 +100,18 @@ class Startup(models.Model):
         return self.blog_posts.filter(
             pub_date__lt=date.today())
 
+    def natural_key(self):
+        return (self.slug,)
+
+
+class NewsLinkManager(models.Manager):
+
+    def get_by_natural_key(
+            self, startup_slug, slug):
+        return self.get(
+            startup__slug=startup_slug,
+            slug=slug)
+
 
 class NewsLink(models.Model):
     title = models.CharField(max_length=63)
@@ -88,6 +119,8 @@ class NewsLink(models.Model):
     pub_date = models.DateField('date published')
     link = models.URLField(max_length=255)
     startup = models.ForeignKey(Startup)
+
+    objects = NewsLinkManager()
 
     class Meta:
         verbose_name = 'news article'
@@ -115,3 +148,10 @@ class NewsLink(models.Model):
             kwargs={
                 'startup_slug': self.startup.slug,
                 'newslink_slug': self.slug})
+
+    def natural_key(self):
+        return (
+            self.startup.natural_key(),
+            self.slug)
+    natural_key.dependencies = [
+        'organizer.startup']
