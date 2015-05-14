@@ -1,130 +1,114 @@
 [
 {
   "fields": {
-    "name": "augmented reality",
-    "slug": "augmented-reality"
+    "slug": "augmented-reality",
+    "name": "augmented reality"
   },
-  "model": "organizer.tag",
-  "pk": 1
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "big data",
-    "slug": "big-data"
+    "slug": "big-data",
+    "name": "big data"
   },
-  "model": "organizer.tag",
-  "pk": 2
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "django",
-    "slug": "django"
+    "slug": "django",
+    "name": "django"
   },
-  "model": "organizer.tag",
-  "pk": 3
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "education",
-    "slug": "education"
+    "slug": "education",
+    "name": "education"
   },
-  "model": "organizer.tag",
-  "pk": 4
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "ipython",
-    "slug": "ipython"
+    "slug": "ipython",
+    "name": "ipython"
   },
-  "model": "organizer.tag",
-  "pk": 5
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "javascript",
-    "slug": "javascript"
+    "slug": "javascript",
+    "name": "javascript"
   },
-  "model": "organizer.tag",
-  "pk": 6
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "jupyter",
-    "slug": "jupyter"
+    "slug": "jupyter",
+    "name": "jupyter"
   },
-  "model": "organizer.tag",
-  "pk": 7
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "mobile",
-    "slug": "mobile"
+    "slug": "mobile",
+    "name": "mobile"
   },
-  "model": "organizer.tag",
-  "pk": 8
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "node.js",
-    "slug": "node-js"
+    "slug": "node-js",
+    "name": "node.js"
   },
-  "model": "organizer.tag",
-  "pk": 9
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "php",
-    "slug": "php"
+    "slug": "php",
+    "name": "php"
   },
-  "model": "organizer.tag",
-  "pk": 10
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "python",
-    "slug": "python"
+    "slug": "python",
+    "name": "python"
   },
-  "model": "organizer.tag",
-  "pk": 11
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "ruby on rails",
-    "slug": "ruby-on-rails"
+    "slug": "ruby-on-rails",
+    "name": "ruby on rails"
   },
-  "model": "organizer.tag",
-  "pk": 12
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "ruby",
-    "slug": "ruby"
+    "slug": "ruby",
+    "name": "ruby"
   },
-  "model": "organizer.tag",
-  "pk": 13
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "video games",
-    "slug": "video-games"
+    "slug": "video-games",
+    "name": "video games"
   },
-  "model": "organizer.tag",
-  "pk": 14
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "web",
-    "slug": "web"
+    "slug": "web",
+    "name": "web"
   },
-  "model": "organizer.tag",
-  "pk": 15
+  "model": "organizer.tag"
 },
 {
   "fields": {
-    "name": "zend",
-    "slug": "zend"
+    "slug": "zend",
+    "name": "zend"
   },
-  "model": "organizer.tag",
-  "pk": 16
+  "model": "organizer.tag"
 }
 ]

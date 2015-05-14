@@ -2,34 +2,37 @@
 {
   "model": "organizer.newslink",
   "fields": {
-    "slug": "redundant-homepage-link",
+    "startup": [
+      "jambon-software"
+    ],
     "pub_date": "2013-01-18",
-    "link": "http://jambonsw.com",
-    "startup": 4,
-    "title": "Redundant Homepage Link"
-  },
-  "pk": 1
+    "slug": "redundant-homepage-link",
+    "title": "Redundant Homepage Link",
+    "link": "http://jambonsw.com"
+  }
 },
 {
   "model": "organizer.newslink",
   "fields": {
-    "slug": "monkey-wikipedia",
+    "startup": [
+      "monkey-software"
+    ],
     "pub_date": "2012-07-22",
-    "link": "https://en.wikipedia.org/wiki/Monkey",
-    "startup": 6,
-    "title": "Monkey (Wikipedia)"
-  },
-  "pk": 2
+    "slug": "monkey-wikipedia",
+    "title": "Monkey (Wikipedia)",
+    "link": "https://en.wikipedia.org/wiki/Monkey"
+  }
 },
 {
   "model": "organizer.newslink",
   "fields": {
-    "slug": "william-shakespeare-wikipedia",
+    "startup": [
+      "monkey-software"
+    ],
     "pub_date": "2014-04-26",
-    "link": "https://en.wikipedia.org/wiki/William_Shakespeare",
-    "startup": 6,
-    "title": "William Shakespeare (Wikipedia)"
-  },
-  "pk": 3
+    "slug": "william-shakespeare-wikipedia",
+    "title": "William Shakespeare (Wikipedia)",
+    "link": "https://en.wikipedia.org/wiki/William_Shakespeare"
+  }
 }
 ]

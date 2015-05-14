@@ -1,64 +1,73 @@
 [
 {
-  "pk": 1,
   "model": "auth.group",
   "fields": {
     "permissions": [
-      28,
-      29
+      [
+        "add_post",
+        "blog",
+        "post"
+      ],
+      [
+        "change_post",
+        "blog",
+        "post"
+      ]
     ],
     "name": "contributors"
   }
 },
 {
-  "pk": 1,
   "model": "user.user",
   "fields": {
-    "is_staff": true,
     "password": "pbkdf2_sha256$20000$4YuwfBkg9ia5$5z90AV7EnBAk6as65luVfdJvsLhR0EZDbwDdmEmC0XA=",
+    "groups": [],
     "email": "django@jambonsw.com",
-    "is_active": true,
-    "last_login": null,
-    "user_permissions": [],
+    "is_staff": true,
     "is_superuser": true,
-    "groups": []
+    "user_permissions": [],
+    "last_login": null,
+    "is_active": true
   }
 },
 {
-  "pk": 2,
   "model": "user.user",
   "fields": {
-    "is_staff": true,
     "password": "pbkdf2_sha256$20000$pDgqb0yE9m4C$EyWEoTyZFTIJ6SYLJaB3uUgUvuydE5IMwy8cAbgf6tQ=",
-    "email": "ada@djangogirls.org",
-    "is_active": true,
-    "last_login": null,
-    "user_permissions": [],
-    "is_superuser": false,
     "groups": [
-      1
-    ]
+      [
+        "contributors"
+      ]
+    ],
+    "email": "ada@djangogirls.org",
+    "is_staff": true,
+    "is_superuser": false,
+    "user_permissions": [],
+    "last_login": null,
+    "is_active": true
   }
 },
 {
-  "pk": 1,
   "model": "user.profile",
   "fields": {
-    "joined": "2015-07-29T19:27:11.804Z",
-    "user": 1,
     "slug": "andrew",
+    "joined": "2015-07-29T19:27:11.804Z",
     "about": "The author of this site!",
+    "user": [
+      "django@jambonsw.com"
+    ],
     "name": "Andrew"
   }
 },
 {
-  "pk": 2,
   "model": "user.profile",
   "fields": {
-    "joined": "2015-07-29T19:27:11.847Z",
-    "user": 2,
     "slug": "the_countess",
+    "joined": "2015-07-29T19:27:11.847Z",
     "about": "Django Girls is a non-profit organization that empowers and helps women to organize free, one-day programming workshops by providing tools, resources and support. It was born in Berlin and started by two Polish girls: Ola Sitarska and Ola Sendecka.",
+    "user": [
+      "ada@djangogirls.org"
+    ],
     "name": "Ada Lovelace"
   }
 }
