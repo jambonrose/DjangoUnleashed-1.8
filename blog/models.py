@@ -20,6 +20,14 @@ class PostQueryset(models.QuerySet):
 
 class BasePostManager(models.Manager):
 
+    def get_queryset(self):
+        return (
+            PostQueryset(
+                self.model,
+                using=self._db,
+                hints=self._hints)
+            .select_related('author__profile'))
+
     def get_by_natural_key(self, pub_date, slug):
         return self.get(
             pub_date=pub_date,
