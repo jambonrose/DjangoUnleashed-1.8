@@ -117,7 +117,10 @@ class TagDelete(DeleteView):
 
 
 class TagDetail(DetailView):
-    model = Tag
+    queryset = (
+        Tag.objects
+        .prefetch_related('startup_set')
+    )
 
 
 class TagList(PageLinksMixin, ListView):
