@@ -112,15 +112,17 @@
           <section class="meta offset-by-two two-thirds column">
         {% endif %}
         {% if perms.blog.view_future_post and startup.blog_posts.all %}
-            <h3>Blog Post{{ startup.blog_posts.all|pluralize }}</h3>
+          {% with post_list=startup.blog_posts.all %}
+            <h3>Blog Post{{ post_list|pluralize }}</h3>
             <ul>
-              {% for post in startup.blog_posts.all %}
+              {% for post in post_list %}
                 <li>
                   <a href="{{ post.get_absolute_url }}">
                     {{ post.title|title }}</a>
                 </li>
               {% endfor %}
             </ul>
+          {% endwith %}
         {% elif startup.published_posts|length > 0 %}
             <h3>Blog Post{{ startup.published_posts|pluralize }}</h3>
             <ul>
