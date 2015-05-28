@@ -42,11 +42,12 @@
     </section>
   {% endif %}
   {% if perms.blog.view_future_post %}
-      {% if tag.blog_posts.all %}
+    {% with tag_list=tag.blog_posts.all %}
+      {% if tag_list %}
         <section>
-          <h3>Blog Post{{ tag.blog_posts.count|pluralize }}</h3>
+          <h3>Blog Post{{ tag_list|pluralize }}</h3>
           <ul>
-            {% for post in tag.blog_posts.all %}
+            {% for post in tag_list %}
               <li><a href="{{ post.get_absolute_url }}">
                 {{ post.title|title }}
               </a></li>
@@ -54,15 +55,17 @@
           </ul>
         </section>
       {% endif %}
-      {% if not tag.startup_set.all and not tag.blog_posts.all %}
+      {% if not tag.startup_set.all and not tag_list %}
         <p>This tag is not related to any content.</p>
       {% endif %}
+    {% endwith %}
   {% else %}
-      {% if tag.published_posts|length > 0 %}
+    {% with tag_list=tag.published_posts %}
+      {% if tag_list %}
         <section>
-          <h3>Blog Post{{ tag.published_posts|pluralize }}</h3>
+          <h3>Blog Post{{ tag_list|pluralize }}</h3>
           <ul>
-            {% for post in tag.published_posts %}
+            {% for post in tag_list %}
               <li><a href="{{ post.get_absolute_url }}">
                 {{ post.title|title }}
               </a></li>
@@ -70,8 +73,9 @@
           </ul>
         </section>
       {% endif %}
-      {% if not tag.startup_set.all and not tag.published_posts %}
+      {% if not tag.startup_set.all and not tag_list %}
         <p>This tag is not related to any content.</p>
       {% endif %}
+    {% endwith %}
   {% endif %}
 {% endblock %}
