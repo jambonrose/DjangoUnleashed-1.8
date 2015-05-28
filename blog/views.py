@@ -50,6 +50,8 @@ class PostDetail(DateObjectMixin, DetailView):
     queryset = (
         Post.objects
         .select_related('author__profile')
+        .prefetch_related('startups')
+        .prefetch_related('tags')
     )
 
 
