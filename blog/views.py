@@ -49,7 +49,6 @@ class PostDetail(DateObjectMixin, DetailView):
     date_field = 'pub_date'
     queryset = (
         Post.objects
-        .select_related('author')
         .select_related('author__profile')
     )
 
