@@ -79,7 +79,14 @@ class StartupDelete(DeleteView):
 
 
 class StartupDetail(DetailView):
-    model = Startup
+    queryset = (
+        Startup.objects.all()
+        .prefetch_related('tags')
+        .prefetch_related('newslink_set')
+        # below omitted because of with tag
+        # and conditional display based on time
+        # .prefetch_related('blog_posts')
+    )
 
 
 class StartupList(PageLinksMixin, ListView):
