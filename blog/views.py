@@ -47,7 +47,10 @@ class PostDelete(DateObjectMixin, DeleteView):
 
 class PostDetail(DateObjectMixin, DetailView):
     date_field = 'pub_date'
-    model = Post
+    queryset = (
+        Post.objects
+        .select_related('author')
+    )
 
 
 class PostList(
