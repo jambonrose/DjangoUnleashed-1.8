@@ -50,6 +50,7 @@ class PostDetail(DateObjectMixin, DetailView):
     queryset = (
         Post.objects
         .select_related('author')
+        .select_related('author__profile')
     )
 
 
