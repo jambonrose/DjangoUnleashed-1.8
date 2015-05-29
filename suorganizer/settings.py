@@ -75,8 +75,10 @@ TEMPLATES = [{
             'django.contrib.messages.context_processors.messages',
         ],
         'loaders': [
-            'django.template.loaders.filesystem.Loader',
-            'django.template.loaders.app_directories.Loader',
+            ('django.template.loaders.cached.Loader', [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ]),
         ],
     },
 }]
