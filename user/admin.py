@@ -50,6 +50,7 @@ class UserAdmin(admin.ModelAdmin):
         'is_staff',
         'is_superuser',
         'profile__joined')
+    list_select_related = ('profile',)
     ordering = ('email',)
     search_fields = ('email',)
     # form view
