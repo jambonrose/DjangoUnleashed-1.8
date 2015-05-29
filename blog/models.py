@@ -70,6 +70,9 @@ class Post(models.Model):
             ("view_future_post",
              "Can view unpublished Post"),
         )
+        index_together = (
+            ('slug', 'pub_date'),
+        )
 
     def __str__(self):
         return "{} on {}".format(
