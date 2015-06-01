@@ -93,9 +93,7 @@ WSGI_APPLICATION = 'suorganizer.wsgi.application'
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake',
-        'TIMEOUT': 600,  # seconds == 10 minutes
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
 CACHE_MIDDLEWARE_ALIAS = 'default'
