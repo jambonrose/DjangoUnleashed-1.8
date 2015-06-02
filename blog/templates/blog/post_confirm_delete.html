@@ -1,27 +1,10 @@
 {% extends parent_template|default:"blog/base_blog.html" %}
+{% load display_form %}
 
 {% block title %}
 {{ block.super }} - Delete Blog Post
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="offset-by-two eight columns">
-      <form
-          action="{{ post.get_delete_url }}"
-          method="post">
-        {% csrf_token %}
-        <p>
-          Are you sure you want to delete
-          the blog post titled {{ post.title }}?
-        </p>
-        <a
-            href="{{ post.get_absolute_url }}"
-            class="button button-primary">
-          Cancel</a>
-        <button type="submit">
-          Delete Blog Post</button>
-      </form>
-    </div>
-  </div>
+  {% delete_form post.get_delete_url %}
 {% endblock %}
