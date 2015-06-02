@@ -1,22 +1,11 @@
 {% extends parent_template|default:"organizer/base_organizer.html" %}
+{% load display_form %}
 
 {% block title %}
 {{ block.super }} - Create Tag
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="offset-by-two eight columns">
-      <form
-          action="{% url 'organizer_tag_create' %}"
-          method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button
-            class="button-primary"
-            type="submit">
-          Create Tag</button>
-      </form>
-    </div>
-  </div>
+  {% url 'organizer_tag_create' as form_url %}
+  {% form form_url 'Create Tag' %}
 {% endblock %}

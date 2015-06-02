@@ -1,22 +1,10 @@
 {% extends parent_template|default:"blog/base_blog.html" %}
+{% load display_form %}
 
 {% block title %}
 {{ block.super }} - Update Blog Post
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="offset-by-two eight columns">
-      <form
-          action="{{ post.get_update_url }}"
-          method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button
-            class="button-primary"
-            type="submit">
-          Update Blog Post</button>
-      </form>
-    </div>
-  </div>
+  {% form post.get_update_url 'Update Blog Post' %}
 {% endblock %}

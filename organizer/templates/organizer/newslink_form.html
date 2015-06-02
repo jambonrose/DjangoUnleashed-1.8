@@ -1,22 +1,10 @@
 {% extends parent_template|default:"organizer/base_organizer.html" %}
+{% load display_form %}
 
 {% block title %}
 {{ block.super }} - Link News Article to Startup
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="offset-by-two eight columns">
-      <form
-          action="{{ startup.get_newslink_create_url }}"
-          method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button
-            class="button-primary"
-            type="submit">
-          Link Article</button>
-      </form>
-    </div>
-  </div>
+  {% form startup.get_newslink_create_url 'Link Article' %}
 {% endblock %}

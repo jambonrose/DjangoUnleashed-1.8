@@ -1,22 +1,10 @@
 {% extends parent_template|default:"organizer/base_organizer.html" %}
+{% load display_form %}
 
 {% block title %}
 {{ block.super }} - Update Tag
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="offset-by-two eight columns">
-      <form
-          action="{{ tag.get_update_url }}"
-          method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button
-            class="button-primary"
-            type="submit">
-          Update Tag</button>
-      </form>
-    </div>
-  </div>
+  {% form tag.get_update_url 'Update Tag' %}
 {% endblock %}
