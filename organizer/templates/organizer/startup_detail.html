@@ -109,7 +109,7 @@
           </section>
       {% endif %}
 
-      {% format_post_list startup %}
+      {% format_post_list startup opposite=startup.newslink_set.all perm_button=perms.organizer.add_newslink %}
 
     </div> <!-- row -->
   {% endif %}

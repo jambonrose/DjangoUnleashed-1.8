@@ -1,5 +1,5 @@
 {% if post_list %}
-  <section>
+  <section {{ section_attr }}>
     <h3>Blog Post{{ post_list|pluralize }}</h3>
     <ul>
       {% for post in post_list %}
