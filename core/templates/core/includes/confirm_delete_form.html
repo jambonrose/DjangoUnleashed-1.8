@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="offset-by-two eight columns">
+    <form
+        action="{{ action }}"
+        method="{{ method|default:'post' }}">
+      {% csrf_token %}
+      <p>Are you sure you want to delete the
+        {{ obj_type }} titled "{{ obj_title }}"?</p>
+      <a href="{{ object.get_absolute_url }}">
+        Cancel</a>
+      <button type="submit">
+        Delete {{ obj_type }}</button>
+    </form>
+  </div>
+</div>
