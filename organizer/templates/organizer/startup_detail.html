@@ -1,5 +1,6 @@
 {% extends parent_template|default:"organizer/base_organizer.html" %}
 {% load obfuscate_email %}
+{% load partial_post_list %}
 
 {% block title %}
 {{ block.super }} - {{ startup.name }}
@@ -117,25 +118,11 @@
         {% if perms.blog.view_future_post and startup.blog_posts.all %}
           {% with post_list=startup.blog_posts.all %}
             <h3>Blog Post{{ post_list|pluralize }}</h3>
-            <ul>
-              {% for post in post_list %}
-                <li>
-                  <a href="{{ post.get_absolute_url }}">
-                    {{ post.title|title }}</a>
-                </li>
-              {% endfor %}
-            </ul>
+            {% format_post_list post_list %}
           {% endwith %}
         {% elif startup.published_posts|length > 0 %}
             <h3>Blog Post{{ startup.published_posts|pluralize }}</h3>
-            <ul>
-              {% for post in startup.published_posts %}
-                <li>
-                  <a href="{{ post.get_absolute_url }}">
-                    {{ post.title|title }}</a>
-                </li>
-              {% endfor %}
-            </ul>
+            {% format_post_list startup.published_posts %}
         {% endif %}
           </section>
       {% endif %}
