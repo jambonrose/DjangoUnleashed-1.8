@@ -33,8 +33,11 @@ def tag_create(request):
                 'organizer/tag_form.html',
                 {'form': form})
     else:  # request.method != 'POST'
-        # show unbound HTML form
-        pass
+        form = TagForm()
+        return render(
+            request,
+            'organizer/tag_form.html',
+            {'form': form})
 
 
 def tag_detail(request, slug):
