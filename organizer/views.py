@@ -20,6 +20,10 @@ def startup_list(request):
         {'startup_list': Startup.objects.all()})
 
 
+def tag_create(request):
+    pass
+
+
 def tag_detail(request, slug):
     tag = get_object_or_404(
         Tag, slug__iexact=slug)
