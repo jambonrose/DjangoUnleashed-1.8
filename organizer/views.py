@@ -21,7 +21,17 @@ def startup_list(request):
 
 
 def tag_create(request):
-    pass
+    if request.method == 'POST':
+        # bind data to form
+        # if the data is valid:
+            # create new object from data
+            # show webpage for new object
+        # else: (empty data or invalid data)
+            # show bound HTML form (with errors)
+        pass
+    else:  # request.method != 'POST'
+        # show unbound HTML form
+        pass
 
 
 def tag_detail(request, slug):
