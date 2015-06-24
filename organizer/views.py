@@ -1,5 +1,5 @@
 from django.shortcuts import (
-    get_object_or_404, render)
+    get_object_or_404, redirect, render)
 
 from .forms import TagForm
 from .models import Startup, Tag
@@ -25,9 +25,8 @@ def tag_create(request):
     if request.method == 'POST':
         form = TagForm(request.POST)
         if form.is_valid():
-            # create new object from data
-            # show webpage for new object
-            pass
+            new_tag = form.save()
+            return redirect(new_tag)
         else:  # empty data or invalid data
             # show bound HTML form (with errors)
             pass
