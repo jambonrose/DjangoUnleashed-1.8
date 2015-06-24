@@ -27,17 +27,12 @@ def tag_create(request):
         if form.is_valid():
             new_tag = form.save()
             return redirect(new_tag)
-        else:  # empty data or invalid data
-            return render(
-                request,
-                'organizer/tag_form.html',
-                {'form': form})
     else:  # request.method != 'POST'
         form = TagForm()
-        return render(
-            request,
-            'organizer/tag_form.html',
-            {'form': form})
+    return render(
+        request,
+        'organizer/tag_form.html',
+        {'form': form})
 
 
 def tag_detail(request, slug):
