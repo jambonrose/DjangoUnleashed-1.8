@@ -1,6 +1,7 @@
 from django.shortcuts import (
     get_object_or_404, render)
 
+from .forms import TagForm
 from .models import Startup, Tag
 
 
@@ -22,13 +23,14 @@ def startup_list(request):
 
 def tag_create(request):
     if request.method == 'POST':
-        # bind data to form
-        # if the data is valid:
+        form = TagForm(request.POST)
+        if form.is_valid():
             # create new object from data
             # show webpage for new object
-        # else: (empty data or invalid data)
+            pass
+        else:  # empty data or invalid data
             # show bound HTML form (with errors)
-        pass
+            pass
     else:  # request.method != 'POST'
         # show unbound HTML form
         pass
