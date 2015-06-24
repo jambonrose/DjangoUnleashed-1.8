@@ -28,8 +28,10 @@ def tag_create(request):
             new_tag = form.save()
             return redirect(new_tag)
         else:  # empty data or invalid data
-            # show bound HTML form (with errors)
-            pass
+            return render(
+                request,
+                'organizer/tag_form.html',
+                {'form': form})
     else:  # request.method != 'POST'
         # show unbound HTML form
         pass
