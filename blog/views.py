@@ -3,8 +3,8 @@ from django.shortcuts import (
 from django.views.decorators.http import \
     require_http_methods
 from django.views.generic import (
-    CreateView, ListView, MonthArchiveView,
-    View, YearArchiveView)
+    ArchiveIndexView, CreateView,
+    MonthArchiveView, View, YearArchiveView)
 
 from .forms import PostForm
 from .models import Post
@@ -63,8 +63,15 @@ def post_detail(request, year, month, slug):
         {'post': post})
 
 
-class PostList(ListView):
+class PostList(ArchiveIndexView):
+    allow_empty = True
+    allow_future = True
+    context_object_name = 'post_list'
+    date_field = 'pub_date'
+    make_object_list = True
     model = Post
+    paginate_by = 5
+    template_name = 'blog/post_list.html'
 
 
 class PostUpdate(View):

@@ -54,6 +54,13 @@
           href="{% url 'blog_post_create' %}"
           class="button button-primary">
         Write New Blog Post</a>
+      <h3>Post Archives</h3>
+      <ul>
+        {% for y in date_list %}
+          <li><a href="{% url 'blog_post_archive_year' y|date:"Y" %}">
+            {{ y|date:"Y" }}</a></li>
+        {% endfor %}
+      </ul>
     </div>
   </div><!-- row -->
 {% endblock %}
