@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.flatpages import \
+    urls as flatpage_urls
 
 from blog import urls as blog_urls
 from contact import urls as contact_urls
@@ -32,4 +34,5 @@ urlpatterns = [
     url(r'^newslink/', include(newslink_urls)),
     url(r'^startup/', include(startup_urls)),
     url(r'^tag/', include(tag_urls)),
+    url(r'^', include(flatpage_urls)),
 ]
