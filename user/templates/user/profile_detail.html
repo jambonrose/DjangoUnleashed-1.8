@@ -1,4 +1,5 @@
 {% extends parent_template|default:"user/base_user.html" %}
+{% load partial_post_list %}
 
 {% block title %}
 {{ block.super }} -
@@ -16,29 +17,7 @@
     <h2>About {{ profile.user.get_full_name }}</h2>
     {{ profile.about|default:"No Profile"|linebreaks }}
 
-    {% if perms.blog.view_future_post and profile.user.blog_posts.all %}
-      <section>
-        <h3>Blog Post{{ profile.user.blog_posts.count|pluralize }}</h3>
-        <ul>
-          {% for post in profile.user.blog_posts.all %}
-            <li><a href="{{ post.get_absolute_url }}">
-              {{ post.title|title }}
-            </a></li>
-          {% endfor %}
-        </ul>
-      </section>
-    {% elif profile.user.published_posts|length > 0 %}
-      <section>
-        <h3>Blog Post{{ profile.user.published_posts|pluralize }}</h3>
-        <ul>
-          {% for post in profile.user.published_posts %}
-            <li><a href="{{ post.get_absolute_url }}">
-              {{ post.title|title }}
-            </a></li>
-          {% endfor %}
-        </ul>
-      </section>
-    {% endif %}
+    {% format_post_list profile.user %}
 
     </div><!-- columns -->
 
