@@ -19,7 +19,7 @@ def format_post_list(
     if future_perms:
         post_list = detail_object.blog_posts.all()
     else:
-        post_list = detail_object.published_posts
+        post_list = detail_object.blog_posts.published()
     if opposite is None:
         section_attr = ''
     elif opposite or perm_button:
@@ -31,5 +31,6 @@ def format_post_list(
             'two-thirds column"')
     return {
         'section_attr': section_attr,
-        'post_list': post_list,
+        'post_list': post_list.values(
+            'title', 'slug', 'pub_date'),
     }
