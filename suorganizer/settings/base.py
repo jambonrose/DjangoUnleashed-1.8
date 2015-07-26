@@ -2,6 +2,7 @@
 # https://docs.djangoproject.com/en/1.8/ref/settings/
 
 import os
+import sys
 
 from django.core.urlresolvers import reverse_lazy
 
@@ -131,6 +132,7 @@ LOGGING = {
         'console': {
             'filters': ['remove_migration_sql'],
             'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
         },
     },
     'formatters': {
