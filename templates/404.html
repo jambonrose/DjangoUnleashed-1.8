@@ -1,0 +1,15 @@
+{% extends parent_template|default:"base.html" %}
+
+{% block title %}
+Page Not Found
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="offset-by-two eight columns">
+      <h1>Page Not Found</h1>
+      <p>The path {{ request.path }} is not a
+        webpage on this site!</p>
+    </div>
+  </div>
+{% endblock %}
